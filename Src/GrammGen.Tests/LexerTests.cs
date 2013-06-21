@@ -98,6 +98,58 @@
         }
 
         [TestMethod]
+        public void GetWordWithLowerCaseLetters()
+        {
+            Lexer lexer = new Lexer("word");
+            lexer.GetRange('a','z').OneOrMany().IsAn("Word");
+
+            var result = lexer.NextToken();
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual("word", result.Value);
+            Assert.AreEqual("Word", result.Type);
+
+            Assert.IsNull(lexer.NextToken());
+        }
+
+        [TestMethod]
+        public void GetInteger()
+        {
+            Lexer lexer = new Lexer("123");
+            lexer.GetRange('0', '9').OneOrMany().IsAn("Integer");
+
+            var result = lexer.NextToken();
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual("123", result.Value);
+            Assert.AreEqual("Integer", result.Type);
+
+            Assert.IsNull(lexer.NextToken());
+        }
+
+        [TestMethod]
+        public void GetIntegerAndWord()
+        {
+            Lexer lexer = new Lexer("123 abc");
+            lexer.GetRange('a', 'z').OneOrMany().IsAn("Word");
+            lexer.GetRange('0', '9').OneOrMany().IsAn("Integer");
+
+            var result = lexer.NextToken();
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual("123", result.Value);
+            Assert.AreEqual("Integer", result.Type);
+
+            result = lexer.NextToken();
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual("abc", result.Value);
+            Assert.AreEqual("Word", result.Type);
+
+            Assert.IsNull(lexer.NextToken());
+        }
+
+        [TestMethod]
         public void GetWordWithLettersAOrLettersB()
         {
             Lexer lexer = new Lexer("aaaabb");

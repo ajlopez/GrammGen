@@ -27,6 +27,11 @@
             return (new LexerBuilder(this)).Get(ch);
         }
 
+        public LexerBuilder GetRange(char from, char to)
+        {
+            return (new LexerBuilder(this)).GetRange(from, to);
+        }
+
         public void Define(string name, ILexerProcessor processor)
         {
             this.processors[name] = processor;

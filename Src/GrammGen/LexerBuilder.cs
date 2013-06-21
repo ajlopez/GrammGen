@@ -22,6 +22,13 @@
             return this;
         }
 
+        public LexerBuilder GetRange(char from, char to)
+        {
+            this.processors.Add(new RangeProcessor(from, to));
+
+            return this;
+        }
+
         public LexerBuilder Or()
         {
             this.processors = new List<ILexerProcessor>() { new OrProcessor(this.processors) };
@@ -116,6 +123,26 @@
             public string Process(char ch)
             {
                 if (this.character == ch)
+                    return ch.ToString();
+
+                return null;
+            }
+        }
+
+        private class RangeProcessor : ILexerProcessor
+        {
+            private char from;
+            private char to;
+
+            public RangeProcessor(char from, char to)
+            {
+                this.from = from;
+                this.to = to;
+            }
+
+            public string Process(char ch)
+            {
+                if (this.from <= ch && this.to >= ch)
                     return ch.ToString();
 
                 return null;
