@@ -1,8 +1,5 @@
 <stylecopresultscache>
   <version>10</version>
-  <project key="-1034988038">
-    <configuration>DEBUG;TRACE</configuration>
-  </project>
   <sourcecode name="AssemblyInfo.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
     <settings>
       <timestamp>06/21/2013 16:21:35</timestamp>
@@ -12,17 +9,20 @@
     <milliseconds>871</milliseconds>
     <violations />
   </sourcecode>
+  <project key="-1034988038">
+    <configuration>DEBUG;TRACE</configuration>
+  </project>
   <sourcecode name="LexerTests.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
     <settings>
       <timestamp>06/21/2013 16:21:35</timestamp>
       <milliseconds>619</milliseconds>
     </settings>
-    <timestamp>06/21/2013 16:19:51</timestamp>
-    <milliseconds>330</milliseconds>
+    <timestamp>06/21/2013 18:23:08</timestamp>
+    <milliseconds>727</milliseconds>
     <violations>
-      <violation namespace="Microsoft.StyleCop.CSharp.OrderingRules" rule="UsingDirectivesMustBeOrderedAlphabeticallyByNamespace" ruleCheckId="SA1210">
-        <context>Using directives must be sorted alphabetically by the namespaces.</context>
-        <line>4</line>
+      <violation namespace="Microsoft.StyleCop.CSharp.SpacingRules" rule="CommasMustBeSpacedCorrectly" ruleCheckId="SA1001">
+        <context>Invalid spacing around the comma.</context>
+        <line>104</line>
         <warning>False</warning>
       </violation>
     </violations>

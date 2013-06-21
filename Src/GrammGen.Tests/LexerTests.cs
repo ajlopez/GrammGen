@@ -101,7 +101,7 @@
         public void GetWordWithLowerCaseLetters()
         {
             Lexer lexer = new Lexer("word");
-            lexer.GetRange('a','z').OneOrMany().IsAn("Word");
+            lexer.GetRange('a', 'z').OneOrMany().IsAn("Word");
 
             var result = lexer.NextToken();
 

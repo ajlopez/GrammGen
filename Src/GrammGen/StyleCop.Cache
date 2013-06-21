@@ -21,13 +21,31 @@
   <project key="-983624511">
     <configuration>DEBUG;TRACE</configuration>
   </project>
+  <sourcecode name="ILexerProcessor.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/21/2013 16:20:37</timestamp>
+      <milliseconds>419</milliseconds>
+    </settings>
+    <timestamp>06/21/2013 17:24:37</timestamp>
+    <milliseconds>998</milliseconds>
+    <violations />
+  </sourcecode>
   <sourcecode name="Lexer.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
     <settings>
       <timestamp>06/21/2013 16:20:37</timestamp>
       <milliseconds>419</milliseconds>
     </settings>
-    <timestamp>06/21/2013 16:36:01</timestamp>
-    <milliseconds>882</milliseconds>
+    <timestamp>06/21/2013 18:18:35</timestamp>
+    <milliseconds>417</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="LexerBuilder.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/21/2013 16:20:37</timestamp>
+      <milliseconds>419</milliseconds>
+    </settings>
+    <timestamp>06/21/2013 18:20:11</timestamp>
+    <milliseconds>92</milliseconds>
     <violations />
   </sourcecode>
 </stylecopresultscache>
