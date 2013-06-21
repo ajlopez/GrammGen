@@ -23,5 +23,35 @@
 
             Assert.IsNull(lexer.NextToken());
         }
+
+        [TestMethod]
+        public void GetLetterAWithSpaces()
+        {
+            Lexer lexer = new Lexer("  a   ");
+            lexer.Define("Alpha", 'a');
+
+            var result = lexer.NextToken();
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual("a", result.Value);
+            Assert.AreEqual("Alpha", result.Type);
+
+            Assert.IsNull(lexer.NextToken());
+        }
+
+        [TestMethod]
+        public void GetLetterATabsAndSpaces()
+        {
+            Lexer lexer = new Lexer(" \ta\t  ");
+            lexer.Define("Alpha", 'a');
+
+            var result = lexer.NextToken();
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual("a", result.Value);
+            Assert.AreEqual("Alpha", result.Type);
+
+            Assert.IsNull(lexer.NextToken());
+        }
     }
 }

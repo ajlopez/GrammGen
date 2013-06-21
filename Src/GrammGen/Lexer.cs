@@ -30,7 +30,7 @@
 
         public Token NextToken()
         {
-            int ich = this.NextChar();
+            int ich = this.NextCharSkippingSpaces();
 
             if (ich < 0)
                 return null;
@@ -39,6 +39,16 @@
                 return new Token(this.name, this.ch.ToString());
 
             return null;
+        }
+
+        private int NextCharSkippingSpaces()
+        {
+            int ich;
+
+            for (ich = this.NextChar(); ich >= 0 && char.IsWhiteSpace((char) ich); ich = this.NextChar())
+                ;
+
+            return ich;
         }
 
         private int NextChar()
