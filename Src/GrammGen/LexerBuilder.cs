@@ -31,7 +31,12 @@
 
         public LexerBuilder Or()
         {
-            this.processors = new List<ILexerProcessor>() { new OrProcessor(this.processors) };
+            int l = this.processors.Count;
+            var processor1 = this.processors[l - 2];
+            var processor2 = this.processors[l - 1];
+            this.processors.RemoveAt(l - 1);
+            this.processors.RemoveAt(l - 2);
+            this.processors.Add(new OrProcessor(processor1, processor2));
 
             return this;
         }
@@ -151,24 +156,23 @@
 
         private class OrProcessor : ILexerProcessor
         {
-            private IList<ILexerProcessor> processors;
+            private ILexerProcessor lprocessor;
+            private ILexerProcessor rprocessor;
 
-            public OrProcessor(IList<ILexerProcessor> processors)
+            public OrProcessor(ILexerProcessor lprocessor, ILexerProcessor rprocessor)
             {
-                this.processors = new List<ILexerProcessor>(processors);
+                this.lprocessor = lprocessor;
+                this.rprocessor = rprocessor;
             }
 
             public string Process(char ch)
             {
-                foreach (var processor in this.processors)
-                {
-                    var result = processor.Process(ch);
+                var result = this.lprocessor.Process(ch);
 
-                    if (result != null)
-                        return result;
-                }
+                if (result != null)
+                    return result;
 
-                return null;
+                return this.rprocessor.Process(ch);
             }
         }
 

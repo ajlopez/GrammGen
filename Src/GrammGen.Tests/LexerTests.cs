@@ -101,7 +101,7 @@
         public void GetWordWithLowerCaseLetters()
         {
             Lexer lexer = new Lexer("word");
-            lexer.GetRange('a', 'z').OneOrMany().IsAn("Word");
+            lexer.GetRange('a', 'z').OneOrMany().IsA("Word");
 
             var result = lexer.NextToken();
 
@@ -128,10 +128,25 @@
         }
 
         [TestMethod]
+        public void GetReal()
+        {
+            Lexer lexer = new Lexer("123.456");
+            lexer.GetRange('0', '9').OneOrMany().Get('.').GetRange('0', '9').OneOrMany().IsA("Real");
+
+            var result = lexer.NextToken();
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual("123.456", result.Value);
+            Assert.AreEqual("Real", result.Type);
+
+            Assert.IsNull(lexer.NextToken());
+        }
+
+        [TestMethod]
         public void GetIntegerAndWord()
         {
             Lexer lexer = new Lexer("123 abc");
-            lexer.GetRange('a', 'z').OneOrMany().IsAn("Word");
+            lexer.GetRange('a', 'z').OneOrMany().IsA("Word");
             lexer.GetRange('0', '9').OneOrMany().IsAn("Integer");
 
             var result = lexer.NextToken();
@@ -139,6 +154,35 @@
             Assert.IsNotNull(result);
             Assert.AreEqual("123", result.Value);
             Assert.AreEqual("Integer", result.Type);
+
+            result = lexer.NextToken();
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual("abc", result.Value);
+            Assert.AreEqual("Word", result.Type);
+
+            Assert.IsNull(lexer.NextToken());
+        }
+
+        [TestMethod]
+        public void GetIntegerOperatorAndWord()
+        {
+            Lexer lexer = new Lexer("123+abc");
+            lexer.GetRange('a', 'z').OneOrMany().IsA("Word");
+            lexer.GetRange('0', '9').OneOrMany().IsAn("Integer");
+            lexer.Get('+').IsAn("Operator");
+
+            var result = lexer.NextToken();
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual("123", result.Value);
+            Assert.AreEqual("Integer", result.Type);
+
+            result = lexer.NextToken();
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual("+", result.Value);
+            Assert.AreEqual("Operator", result.Type);
 
             result = lexer.NextToken();
 
