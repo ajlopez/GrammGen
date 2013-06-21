@@ -68,6 +68,58 @@
         }
 
         [TestMethod]
+        public void GetWordWithLettersAB()
+        {
+            Lexer lexer = new Lexer("ab");
+            lexer.Get('a').Get('b').IsAn("AlphaBeta");
+
+            var result = lexer.NextToken();
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual("ab", result.Value);
+            Assert.AreEqual("AlphaBeta", result.Type);
+
+            Assert.IsNull(lexer.NextToken());
+        }
+
+        [TestMethod]
+        public void GetWordWithLettersA()
+        {
+            Lexer lexer = new Lexer("aaaa");
+            lexer.Get('a').OneOrMany().IsAn("Alphas");
+
+            var result = lexer.NextToken();
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual("aaaa", result.Value);
+            Assert.AreEqual("Alphas", result.Type);
+
+            Assert.IsNull(lexer.NextToken());
+        }
+
+        [TestMethod]
+        public void GetWordWithLettersAOrLettersB()
+        {
+            Lexer lexer = new Lexer("aaaabb");
+            lexer.Get('a').OneOrMany().IsAn("Alphas");
+            lexer.Get('b').OneOrMany().IsAn("Betas");
+
+            var result = lexer.NextToken();
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual("aaaa", result.Value);
+            Assert.AreEqual("Alphas", result.Type);
+
+            result = lexer.NextToken();
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual("bb", result.Value);
+            Assert.AreEqual("Betas", result.Type);
+
+            Assert.IsNull(lexer.NextToken());
+        }
+
+        [TestMethod]
         public void GetLetterAWithSpaces()
         {
             Lexer lexer = new Lexer("  a   ");

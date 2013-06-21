@@ -10,6 +10,7 @@
     {
         private TextReader reader;
         private IDictionary<string, ILexerProcessor> processors = new Dictionary<string, ILexerProcessor>();
+        private Stack<int> chars = new Stack<int>();
 
         public Lexer(string text)
             : this(new StringReader(text))
@@ -53,7 +54,21 @@
 
         internal int NextChar()
         {
+            if (this.chars.Count > 0)
+                return this.chars.Pop();
+
             return this.reader.Read();
+        }
+
+        internal void PushChar(int ich)
+        {
+            this.chars.Push(ich);
+        }
+
+        internal void PushChars(Stack<int> stack)
+        {
+            while (stack.Count > 0)
+                this.chars.Push(stack.Pop());
         }
 
         private int NextCharSkippingSpaces()

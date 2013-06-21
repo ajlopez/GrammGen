@@ -29,6 +29,17 @@
             return this;
         }
 
+        public LexerBuilder OneOrMany()
+        {
+            var processor = this.processors[this.processors.Count - 1];
+
+            this.processors.RemoveAt(this.processors.Count - 1);
+
+            this.processors.Add(new OneOrManyProcessor(this.lexer, processor));
+
+            return this;
+        }
+
         public LexerBuilder IsAn(string name)
         {
             return this.IsA(name);
@@ -64,17 +75,27 @@
                 if (result == null)
                     return null;
 
+                Stack<int> consumed = new Stack<int>();
+
                 foreach (var processor in this.processors.Skip(1))
                 {
-                    int ch2 = this.lexer.NextChar();
+                    int ich = this.lexer.NextChar();
 
-                    if (ch2 < 0)
+                    if (ich < 0)
+                    {
+                        this.lexer.PushChars(consumed);
                         return null;
+                    }
 
-                    var result2 = processor.Process((char)ch2);
+                    consumed.Push(ich);
+
+                    var result2 = processor.Process((char)ich);
 
                     if (result2 == null)
+                    {
+                        this.lexer.PushChars(consumed);
                         return null;
+                    }
 
                     result += result2;
                 }
@@ -121,6 +142,41 @@
                 }
 
                 return null;
+            }
+        }
+
+        private class OneOrManyProcessor : ILexerProcessor
+        {
+            private ILexerProcessor processor;
+            private Lexer lexer;
+
+            public OneOrManyProcessor(Lexer lexer, ILexerProcessor processor)
+            {
+                this.lexer = lexer;
+                this.processor = processor;
+            }
+
+            public string Process(char ch)
+            {
+                var result = this.processor.Process(ch);
+
+                if (result == null)
+                    return null;
+
+                for (int ich = this.lexer.NextChar(); ich >= 0; ich = this.lexer.NextChar())
+                {
+                    var newresult = this.processor.Process((char)ich);
+
+                    if (newresult == null)
+                    {
+                        this.lexer.PushChar(ich);
+                        break;
+                    }
+
+                    result += newresult;
+                }
+
+                return result;
             }
         }
     }
