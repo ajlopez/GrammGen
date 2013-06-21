@@ -89,6 +89,9 @@
 
                 Stack<int> consumed = new Stack<int>();
 
+                for (int k = 1; k < result.Length; k++)
+                    consumed.Push(result[k]);
+
                 foreach (var processor in this.processors.Skip(1))
                 {
                     int ich = this.lexer.NextChar();

@@ -143,6 +143,28 @@
         }
 
         [TestMethod]
+        public void GetIntegerAndReal()
+        {
+            Lexer lexer = new Lexer("123 123.456");
+            lexer.GetRange('0', '9').OneOrMany().Get('.').GetRange('0', '9').OneOrMany().IsA("Real");
+            lexer.GetRange('0', '9').OneOrMany().IsAn("Integer");
+
+            var result = lexer.NextToken();
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual("123", result.Value);
+            Assert.AreEqual("Integer", result.Type);
+
+            result = lexer.NextToken();
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual("123.456", result.Value);
+            Assert.AreEqual("Real", result.Type);
+
+            Assert.IsNull(lexer.NextToken());
+        }
+
+        [TestMethod]
         public void GetIntegerAndWord()
         {
             Lexer lexer = new Lexer("123 abc");

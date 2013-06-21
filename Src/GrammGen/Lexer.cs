@@ -9,7 +9,7 @@
     public class Lexer
     {
         private TextReader reader;
-        private IDictionary<string, ILexerProcessor> processors = new Dictionary<string, ILexerProcessor>();
+        private IList<TokenProcessor> processors = new List<TokenProcessor>();
         private Stack<int> chars = new Stack<int>();
 
         public Lexer(string text)
@@ -32,9 +32,9 @@
             return (new LexerBuilder(this)).GetRange(from, to);
         }
 
-        public void Define(string name, ILexerProcessor processor)
+        public void Define(string type, ILexerProcessor processor)
         {
-            this.processors[name] = processor;
+            this.processors.Add(new TokenProcessor(type, processor));
         }
 
         public Token NextToken()
@@ -46,12 +46,12 @@
 
             char ch = (char)ich;
 
-            foreach (var name in this.processors.Keys)
+            foreach (var processor in this.processors)
             {
-                string value = this.processors[name].Process(ch);
+                var token = processor.NextToken(ch);
 
-                if (value != null)
-                    return new Token(name, value);
+                if (token != null)
+                    return token;
             }
 
             return null;
@@ -85,6 +85,28 @@
                     break;
 
             return ich;
+        }
+
+        private class TokenProcessor
+        {
+            private string type;
+            private ILexerProcessor processor;
+
+            public TokenProcessor(string type, ILexerProcessor processor)
+            {
+                this.type = type;
+                this.processor = processor;
+            }
+
+            public Token NextToken(char ch)
+            {
+                var value = this.processor.Process(ch);
+
+                if (value == null)
+                    return null;
+
+                return new Token(this.type, value);
+            }
         }
     }
 }
