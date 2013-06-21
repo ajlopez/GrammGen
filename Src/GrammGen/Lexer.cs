@@ -30,7 +30,20 @@
 
         public Token NextToken()
         {
+            int ich = this.NextChar();
+
+            if (ich < 0)
+                return null;
+
+            if (ich == this.ch)
+                return new Token(this.name, this.ch.ToString());
+
             return null;
+        }
+
+        private int NextChar()
+        {
+            return this.reader.Read();
         }
     }
 }
