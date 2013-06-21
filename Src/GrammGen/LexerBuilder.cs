@@ -29,6 +29,16 @@
             return this;
         }
 
+        public LexerBuilder OrGet(char ch)
+        {
+            return this.Get(ch).Or();
+        }
+
+        public LexerBuilder OrGetRange(char from, char to)
+        {
+            return this.GetRange(from, to).Or();
+        }
+
         public LexerBuilder Or()
         {
             int l = this.processors.Count;
@@ -48,6 +58,17 @@
             this.processors.RemoveAt(this.processors.Count - 1);
 
             this.processors.Add(new OneOrManyProcessor(this.lexer, processor));
+
+            return this;
+        }
+
+        public LexerBuilder ZeroOrMany()
+        {
+            var processor = this.processors[this.processors.Count - 1];
+
+            this.processors.RemoveAt(this.processors.Count - 1);
+
+            this.processors.Add(new ZeroOrManyProcessor(this.lexer, processor));
 
             return this;
         }
@@ -196,6 +217,44 @@
 
                 if (result == null)
                     return null;
+
+                for (int ich = this.lexer.NextChar(); ich >= 0; ich = this.lexer.NextChar())
+                {
+                    var newresult = this.processor.Process((char)ich);
+
+                    if (newresult == null)
+                    {
+                        this.lexer.PushChar(ich);
+                        break;
+                    }
+
+                    result += newresult;
+                }
+
+                return result;
+            }
+        }
+
+        private class ZeroOrManyProcessor : ILexerProcessor
+        {
+            private ILexerProcessor processor;
+            private Lexer lexer;
+
+            public ZeroOrManyProcessor(Lexer lexer, ILexerProcessor processor)
+            {
+                this.lexer = lexer;
+                this.processor = processor;
+            }
+
+            public string Process(char ch)
+            {
+                var result = this.processor.Process(ch);
+
+                if (result == null) 
+                {
+                    this.lexer.PushChar(ch);
+                    return string.Empty;
+                }
 
                 for (int ich = this.lexer.NextChar(); ich >= 0; ich = this.lexer.NextChar())
                 {

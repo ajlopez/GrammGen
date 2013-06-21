@@ -266,5 +266,45 @@
 
             Assert.IsNull(lexer.NextToken());
         }
+
+        [TestMethod]
+        public void GetNames()
+        {
+            Lexer lexer = new Lexer("abc _123 _a1 abC1 A_name");
+            lexer.Get('_').OrGetRange('0', '9').OrGetRange('a', 'z').OrGetRange('A', 'Z').OrGet('_').OneOrMany().IsA("Name");
+            lexer.GetRange('a', 'z').OrGetRange('A', 'Z').GetRange('0', '9').OrGetRange('a', 'z').OrGetRange('A', 'Z').OrGet('_').ZeroOrMany().IsA("Name");
+
+            var result = lexer.NextToken();
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual("abc", result.Value);
+            Assert.AreEqual("Name", result.Type);
+
+            result = lexer.NextToken();
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual("_123", result.Value);
+            Assert.AreEqual("Name", result.Type);
+
+            result = lexer.NextToken();
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual("_a1", result.Value);
+            Assert.AreEqual("Name", result.Type);
+
+            result = lexer.NextToken();
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual("abC1", result.Value);
+            Assert.AreEqual("Name", result.Type);
+
+            result = lexer.NextToken();
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual("A_name", result.Value);
+            Assert.AreEqual("Name", result.Type);
+
+            Assert.IsNull(lexer.NextToken());
+        }
     }
 }
