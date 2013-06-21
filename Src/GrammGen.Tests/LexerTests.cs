@@ -13,7 +13,7 @@
         public void GetLetterA()
         {
             Lexer lexer = new Lexer("a");
-            lexer.Get('a').IsA("Alpha");
+            lexer.Get('a').IsAn("Alpha");
 
             var result = lexer.NextToken();
 
@@ -28,7 +28,7 @@
         public void GetLetterAAndLetterB()
         {
             Lexer lexer = new Lexer("ab");
-            lexer.Get('a').IsA("Alpha");
+            lexer.Get('a').IsAn("Alpha");
             lexer.Get('b').IsA("Beta");
 
             var result = lexer.NextToken();
@@ -50,7 +50,7 @@
         public void GetWordWithLettersAOrB()
         {
             Lexer lexer = new Lexer("ab");
-            lexer.Get('a').Get('b').Or().IsA("AlphaBeta");
+            lexer.Get('a').Get('b').Or().IsAn("AlphaBeta");
 
             var result = lexer.NextToken();
 
@@ -71,7 +71,7 @@
         public void GetLetterAWithSpaces()
         {
             Lexer lexer = new Lexer("  a   ");
-            lexer.Get('a').IsA("Alpha");
+            lexer.Get('a').IsAn("Alpha");
 
             var result = lexer.NextToken();
 
@@ -86,7 +86,7 @@
         public void GetLetterATabsAndSpaces()
         {
             Lexer lexer = new Lexer(" \ta\t  ");
-            lexer.Get('a').IsA("Alpha");
+            lexer.Get('a').IsAn("Alpha");
 
             var result = lexer.NextToken();
 

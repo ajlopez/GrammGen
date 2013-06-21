@@ -29,6 +29,11 @@
             return this;
         }
 
+        public LexerBuilder IsAn(string name)
+        {
+            return this.IsA(name);
+        }
+
         public LexerBuilder IsA(string name)
         {
             if (this.processors.Count == 1)
