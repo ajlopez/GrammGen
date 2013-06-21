@@ -21,19 +21,9 @@
             this.reader = reader;
         }
 
-        public interface ILexerProcessor
+        public LexerBuilder Get(char ch)
         {
-            string Process(char ch, Lexer lexer);
-        }
-
-        public static ILexerProcessor Or(params char[] chars)
-        {
-            return new OrProcessor(chars);
-        }
-
-        public void Define(string name, char ch)
-        {
-            this.Define(name, new CharacterProcessor(ch));
+            return (new LexerBuilder(this)).Get(ch);
         }
 
         public void Define(string name, ILexerProcessor processor)
@@ -52,13 +42,18 @@
 
             foreach (var name in this.processors.Keys)
             {
-                string value = this.processors[name].Process(ch, this);
+                string value = this.processors[name].Process(ch);
 
                 if (value != null)
                     return new Token(name, value);
             }
 
             return null;
+        }
+
+        internal int NextChar()
+        {
+            return this.reader.Read();
         }
 
         private int NextCharSkippingSpaces()
@@ -70,47 +65,6 @@
                     break;
 
             return ich;
-        }
-
-        private int NextChar()
-        {
-            return this.reader.Read();
-        }
-
-        private class CharacterProcessor : ILexerProcessor
-        {
-            private char character;
-
-            public CharacterProcessor(char character)
-            {
-                this.character = character;
-            }
-
-            public string Process(char ch, Lexer lexer)
-            {
-                if (this.character == ch)
-                    return ch.ToString();
-
-                return null;
-            }
-        }
-
-        private class OrProcessor : ILexerProcessor
-        {
-            private char[] chars;
-
-            public OrProcessor(char[] chars)
-            {
-                this.chars = chars;
-            }
-
-            public string Process(char ch, Lexer lexer)
-            {
-                if (this.chars.Contains(ch))
-                    return ch.ToString();
-
-                return null;
-            }
         }
     }
 }
