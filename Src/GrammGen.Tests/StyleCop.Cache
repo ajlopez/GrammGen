@@ -1,0 +1,30 @@
+<stylecopresultscache>
+  <version>10</version>
+  <project key="-1034988038">
+    <configuration>DEBUG;TRACE</configuration>
+  </project>
+  <sourcecode name="AssemblyInfo.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/21/2013 16:21:35</timestamp>
+      <milliseconds>619</milliseconds>
+    </settings>
+    <timestamp>06/21/2013 15:54:45</timestamp>
+    <milliseconds>871</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="LexerTests.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/21/2013 16:21:35</timestamp>
+      <milliseconds>619</milliseconds>
+    </settings>
+    <timestamp>06/21/2013 16:19:51</timestamp>
+    <milliseconds>330</milliseconds>
+    <violations>
+      <violation namespace="Microsoft.StyleCop.CSharp.OrderingRules" rule="UsingDirectivesMustBeOrderedAlphabeticallyByNamespace" ruleCheckId="SA1210">
+        <context>Using directives must be sorted alphabetically by the namespaces.</context>
+        <line>4</line>
+        <warning>False</warning>
+      </violation>
+    </violations>
+  </sourcecode>
+</stylecopresultscache>

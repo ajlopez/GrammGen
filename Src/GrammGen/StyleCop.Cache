@@ -1,0 +1,33 @@
+<stylecopresultscache>
+  <version>10</version>
+  <sourcecode name="Token.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/21/2013 16:20:37</timestamp>
+      <milliseconds>419</milliseconds>
+    </settings>
+    <timestamp>06/21/2013 16:02:16</timestamp>
+    <milliseconds>776</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="AssemblyInfo.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/21/2013 16:20:37</timestamp>
+      <milliseconds>419</milliseconds>
+    </settings>
+    <timestamp>06/21/2013 15:54:19</timestamp>
+    <milliseconds>347</milliseconds>
+    <violations />
+  </sourcecode>
+  <project key="-983624511">
+    <configuration>DEBUG;TRACE</configuration>
+  </project>
+  <sourcecode name="Lexer.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/21/2013 16:20:37</timestamp>
+      <milliseconds>419</milliseconds>
+    </settings>
+    <timestamp>06/21/2013 16:36:01</timestamp>
+    <milliseconds>882</milliseconds>
+    <violations />
+  </sourcecode>
+</stylecopresultscache>
