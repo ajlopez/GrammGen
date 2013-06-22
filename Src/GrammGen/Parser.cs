@@ -21,6 +21,11 @@
             return (new ParserBuilder(this)).Get(name);
         }
 
+        public ParserBuilder Get(string name, object value)
+        {
+            return (new ParserBuilder(this)).Get(name, value);
+        }
+
         public void Define(IParserProcessor processor)
         {
             this.processors.Add(processor);
@@ -28,6 +33,14 @@
 
         public ParserElement ParseElement(string type)
         {
+            var element = this.NextElement();
+
+            if (element != null)
+                if (element.Type == type)
+                    return element;
+                else
+                    this.PushElement(element);
+
             foreach (var processor in this.processors.Where(p => p.Type == type))
             {
                 var result = processor.Process();

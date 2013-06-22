@@ -10,7 +10,7 @@
     public class ParserTests
     {
         [TestMethod]
-        public void ParseInteger()
+        public void ParseIntegerAsExpression()
         {
             Lexer lexer = CreateLexer("123");
             Parser parser = new Parser(lexer);
@@ -23,6 +23,47 @@
             Assert.IsNotNull(result);
             Assert.AreEqual("Expression", result.Type);
             Assert.IsNotNull(result.Value);
+
+            Assert.IsNull(parser.ParseElement("Expression"));
+            Assert.IsNull(parser.NextElement());
+        }
+
+        [TestMethod]
+        public void ParseOperator()
+        {
+            Lexer lexer = CreateLexer("+");
+            Parser parser = new Parser(lexer);
+
+            var result = parser.ParseElement("Operator");
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual("Operator", result.Type);
+            Assert.IsNotNull(result.Value);
+            Assert.AreEqual("+", result.Value);
+
+            Assert.IsNull(parser.ParseElement("Operator"));
+            Assert.IsNull(parser.NextElement());
+        }
+
+        [TestMethod]
+        public void ParseIntegerPlusNameAsExpression()
+        {
+            Lexer lexer = CreateLexer("123+foo");
+            Parser parser = new Parser(lexer);
+
+            parser.Get("Integer").Then("ConstantExpression");
+            parser.Get("ConstantExpression").Then("TermExpression");
+            parser.Get("Name").Then("TermExpression");
+            parser.Get("TermExpression").Get("Operator", "+").Get("TermExpression").Then("Expression");
+
+            var result = parser.ParseElement("Expression");
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual("Expression", result.Type);
+            Assert.IsNotNull(result.Value);
+
+            Assert.IsNull(parser.ParseElement("Expression"));
+            Assert.IsNull(parser.NextElement());
         }
 
         private static Lexer CreateLexer(string text)

@@ -25,7 +25,21 @@
 
         public ParserBuilder Get(string type)
         {
-            this.processor = new ElementProcessor(this.parser, type);
+            if (this.processor != null)
+                this.processor = new AndProcessor(type, this.parser, this.processor, new ElementProcessor(this.parser, type));
+            else
+                this.processor = new ElementProcessor(this.parser, type);
+
+            return this;
+        }
+
+        public ParserBuilder Get(string type, object value)
+        {
+            if (this.processor != null)
+                this.processor = new AndProcessor(type, this.parser, this.processor, new ElementProcessor(this.parser, type, value));
+            else
+                this.processor = new ElementProcessor(this.parser, type, value);
+
             return this;
         }
 
@@ -57,31 +71,69 @@
         {
             private Parser parser;
             private string type;
+            private object value;
 
             public ElementProcessor(Parser parser, string type)
+                : this(parser, type, null)
+            {
+            }
+
+            public ElementProcessor(Parser parser, string type, object value)
             {
                 this.parser = parser;
                 this.type = type;
+                this.value = value;
             }
 
-            public string Type { get; set; }
+            public string Type { get { return this.type; } }
 
             public ParserElement Process()
             {
                 var element = this.parser.NextElement();
 
                 if (element != null)
-                    if (element.Type == this.type)
+                    if (element.Type == this.type && (this.value == null || this.value.Equals(element.Value)))
                         return element;
                     else
                         this.parser.PushElement(element);
 
-                element = this.parser.ParseElement(this.type);
+                return this.parser.ParseElement(this.type);
+            }
+        }
 
-                if (element == null)
+        private class AndProcessor : IParserProcessor
+        {
+            private IParserProcessor lprocessor;
+            private IParserProcessor rprocessor;
+            private string type;
+            private Parser parser;
+
+            public AndProcessor(string type, Parser parser, IParserProcessor lprocessor, IParserProcessor rprocessor)
+            {
+                this.type = type;
+                this.lprocessor = lprocessor;
+                this.rprocessor = rprocessor;
+                this.parser = parser;
+            }
+
+            public string Type { get; set; }
+
+            public ParserElement Process()
+            {
+                var lelement = this.lprocessor.Process();
+
+                if (lelement == null)
                     return null;
 
-                return new ParserElement(this.Type, element.Value);
+                var relement = this.rprocessor.Process();
+
+                if (relement == null)
+                {
+                    this.parser.PushElement(lelement);
+                    return null;
+                }
+
+                return new ParserElement(this.type, new List<ParserElement>() { lelement, relement });
             }
         }
     }
