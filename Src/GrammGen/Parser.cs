@@ -9,7 +9,7 @@
     {
         private Lexer lexer;
         private IList<IParserProcessor> processors = new List<IParserProcessor>();
-        private Stack<Token> tokens = new Stack<Token>();
+        private Stack<ParserElement> elements = new Stack<ParserElement>();
 
         public Parser(Lexer lexer)
         {
@@ -21,11 +21,6 @@
             return (new ParserBuilder(this)).Get(name);
         }
 
-        public ParserBuilder GetToken(string name)
-        {
-            return (new ParserBuilder(this)).GetToken(name);
-        }
-
         public void Define(IParserProcessor processor)
         {
             this.processors.Add(processor);
@@ -33,7 +28,7 @@
 
         public ParserElement ParseElement(string type)
         {
-            foreach (var processor in this.processors.Where(p => p.Name == type))
+            foreach (var processor in this.processors.Where(p => p.Type == type))
             {
                 var result = processor.Process();
 
@@ -44,17 +39,22 @@
             return null;
         }
 
-        public Token NextToken()
+        public ParserElement NextElement()
         {
-            if (this.tokens.Count > 0)
-                return this.tokens.Pop();
+            if (this.elements.Count > 0)
+                return this.elements.Pop();
 
-            return this.lexer.NextToken();
+            var token = this.lexer.NextToken();
+
+            if (token == null)
+                return null;
+
+            return new ParserElement(token.Type, token.Value);
         }
 
-        public void PushToken(Token token)
+        public void PushElement(ParserElement element)
         {
-            this.tokens.Push(token);
+            this.elements.Push(element);
         }
     }
 }

@@ -15,7 +15,7 @@
             Lexer lexer = CreateLexer("123");
             Parser parser = new Parser(lexer);
 
-            parser.GetToken("Integer").Then("ConstantExpression");
+            parser.Get("Integer").Then("ConstantExpression");
             parser.Get("ConstantExpression").Then("Expression");
 
             var result = parser.ParseElement("Expression");
@@ -38,6 +38,11 @@
             lexer.Get('-').IsAn("Operator");
             lexer.Get('*').IsAn("Operator");
             lexer.Get('/').IsAn("Operator");
+            lexer.Get('.').IsA("Separator");
+            lexer.Get('[').IsA("Separator");
+            lexer.Get(']').IsA("Separator");
+            lexer.Get('(').IsA("Separator");
+            lexer.Get(')').IsA("Separator");
 
             return lexer;
         }

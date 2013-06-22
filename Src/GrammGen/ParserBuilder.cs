@@ -15,17 +15,11 @@
             this.parser = parser;
         }
 
-        public ParserBuilder GetToken(string type)
-        {
-            this.processor = new TokenProcessor(this.parser, type);
-            return this;
-        }
-
         public ParserBuilder Then(string type)
         {
-            this.processor.Name = type;
+            var newprocessor = new TransformerProcessor(this.processor, type);
 
-            this.parser.Define(this.processor);
+            this.parser.Define(newprocessor);
             return this;
         }
 
@@ -35,29 +29,27 @@
             return this;
         }
 
-        private class TokenProcessor : IParserProcessor
+        private class TransformerProcessor : IParserProcessor
         {
-            private Parser parser;
+            private IParserProcessor processor;
             private string type;
 
-            public TokenProcessor(Parser parser, string type)
+            public TransformerProcessor(IParserProcessor processor, string type)
             {
-                this.parser = parser;
+                this.processor = processor;
                 this.type = type;
             }
 
-            public string Name { get; set; }
+            public string Type { get { return this.type; } }
 
             public ParserElement Process()
             {
-                Token token = this.parser.NextToken();
+                var element = this.processor.Process();
 
-                if (token != null && token.Type == this.type)
-                    return new ParserElement(this.type, token);
+                if (element == null)
+                    return null;
 
-                this.parser.PushToken(token);
-
-                return null;
+                return new ParserElement(this.type, element.Value);
             }
         }
 
@@ -72,16 +64,24 @@
                 this.type = type;
             }
 
-            public string Name { get; set; }
+            public string Type { get; set; }
 
             public ParserElement Process()
             {
-                var element = this.parser.ParseElement(this.type);
+                var element = this.parser.NextElement();
+
+                if (element != null)
+                    if (element.Type == this.type)
+                        return element;
+                    else
+                        this.parser.PushElement(element);
+
+                element = this.parser.ParseElement(this.type);
 
                 if (element == null)
                     return null;
 
-                return new ParserElement(this.Name, element.Value);
+                return new ParserElement(this.Type, element.Value);
             }
         }
     }

@@ -7,7 +7,7 @@
 
     public interface IParserProcessor
     {
-        string Name { get; set; }
+        string Type { get; }
 
         ParserElement Process();
     }
