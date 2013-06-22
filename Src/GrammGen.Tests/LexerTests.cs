@@ -50,7 +50,7 @@
         public void GetWordWithLettersAOrB()
         {
             Lexer lexer = new Lexer("ab");
-            lexer.Get('a').Get('b').Or().IsAn("AlphaBeta");
+            lexer.Get('a').OrGet('b').IsAn("AlphaBeta");
 
             var result = lexer.NextToken();
 

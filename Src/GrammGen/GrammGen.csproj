@@ -45,9 +45,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ParserElement.cs" />
     <Compile Include="ILexerProcessor.cs" />
+    <Compile Include="IParserProcessor.cs" />
     <Compile Include="Lexer.cs" />
     <Compile Include="LexerBuilder.cs" />
+    <Compile Include="Parser.cs" />
+    <Compile Include="ParserBuilder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Token.cs" />
   </ItemGroup>
