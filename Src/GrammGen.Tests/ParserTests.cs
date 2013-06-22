@@ -18,9 +18,11 @@
             parser.GetToken("Integer").Then("ConstantExpression");
             parser.Get("ConstantExpression").Then("Expression");
 
-            var result = parser.Parse("Expression");
+            var result = parser.ParseElement("Expression");
 
             Assert.IsNotNull(result);
+            Assert.AreEqual("Expression", result.Type);
+            Assert.IsNotNull(result.Value);
         }
 
         private static Lexer CreateLexer(string text)

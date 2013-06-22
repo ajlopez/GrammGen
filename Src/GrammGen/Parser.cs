@@ -9,6 +9,7 @@
     {
         private Lexer lexer;
         private IList<IParserProcessor> processors = new List<IParserProcessor>();
+        private Stack<Token> tokens = new Stack<Token>();
 
         public Parser(Lexer lexer)
         {
@@ -30,17 +31,30 @@
             this.processors.Add(processor);
         }
 
-        public object Parse(string name)
+        public ParserElement ParseElement(string type)
         {
-            foreach (var processor in this.processors.Where(p => p.Name == name))
+            foreach (var processor in this.processors.Where(p => p.Name == type))
             {
                 var result = processor.Process();
 
                 if (result != null)
-                    return result.Value;
+                    return result;
             }
 
             return null;
+        }
+
+        public Token NextToken()
+        {
+            if (this.tokens.Count > 0)
+                return this.tokens.Pop();
+
+            return this.lexer.NextToken();
+        }
+
+        public void PushToken(Token token)
+        {
+            this.tokens.Push(token);
         }
     }
 }
