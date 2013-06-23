@@ -10,6 +10,7 @@
         private string text;
         private int position;
         private int length;
+        private Stack<int> chars = new Stack<int>();
 
         public TextSource(string text)
         {
@@ -24,10 +25,18 @@
 
         public int NextChar()
         {
+            if (this.chars.Count > 0)
+                return this.chars.Pop();
+
             if (this.position >= this.length)
                 return -1;
 
             return this.text[this.position++];
+        }
+
+        public void Push(int ich)
+        {
+            this.chars.Push(ich);
         }
     }
 }

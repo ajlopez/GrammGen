@@ -8,5 +8,7 @@
     public interface ISource
     {
         int NextChar();
+
+        void Push(int ich);
     }
 }

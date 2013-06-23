@@ -19,7 +19,10 @@
             int ich = source.NextChar();
 
             if (ich < 0 || (char)ich != this.character)
+            {
+                source.Push(ich);
                 return null;
+            }
 
             return new Element(null, ((char)ich).ToString());
         }
