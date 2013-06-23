@@ -10,5 +10,7 @@
         int NextChar();
 
         void Push(int ich);
+
+        void Push(string text);
     }
 }

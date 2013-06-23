@@ -32,6 +32,11 @@
             if (k >= this.text.Length)
                 return new Element(null, this.text);
 
+            source.Push(ich);
+
+            if (k > 0)
+                source.Push(this.text.Substring(0, k));
+
             return null;
         }
     }
