@@ -50,6 +50,11 @@
             return new OneOrMoreRule(this);
         }
 
+        public Rule ZeroOrMore()
+        {
+            return new ZeroOrMoreRule(this);
+        }
+
         public Element Process(string text)
         {
             return this.Process(new TextSource(text));

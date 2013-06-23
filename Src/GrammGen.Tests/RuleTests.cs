@@ -83,7 +83,7 @@
         }
 
         [TestMethod]
-        public void ProcessInteger()
+        public void ProcessIntegerUsingOneOrMore()
         {
             var rule = Rule.Get("0-9").OneOrMore();
 
@@ -91,6 +91,28 @@
 
             Assert.IsNotNull(result);
             Assert.AreEqual("123", result.Value);
+        }
+
+        [TestMethod]
+        public void ProcessIntegerUsingZeroOrMore()
+        {
+            var rule = Rule.Get("0-9").ZeroOrMore();
+
+            var result = rule.Process("123");
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual("123", result.Value);
+        }
+
+        [TestMethod]
+        public void ProcessEmptyWordZeroOrMore()
+        {
+            var rule = Rule.Get("a-z").ZeroOrMore();
+
+            var result = rule.Process("123");
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual(string.Empty, result.Value);
         }
     }
 }

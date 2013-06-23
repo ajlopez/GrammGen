@@ -38,12 +38,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="LexerTests.cs" />
-    <Compile Include="ParserTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Rules\AndRuleTests.cs" />
     <Compile Include="Rules\CharacterRuleTests.cs" />
     <Compile Include="Rules\CharacterRangeRuleTests.cs" />
+    <Compile Include="Rules\ZeroOrMoreRuleTests.cs" />
     <Compile Include="Rules\OneOrMoreRuleTests.cs" />
     <Compile Include="Rules\StringRuleTests.cs" />
     <Compile Include="RuleTests.cs" />
