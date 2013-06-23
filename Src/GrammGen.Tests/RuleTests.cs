@@ -61,5 +61,25 @@
             Assert.IsNotNull(result);
             Assert.AreEqual("ab", result.Value);
         }
+
+        [TestMethod]
+        public void ProcessLowerCaseLetters()
+        {
+            var rule = Rule.Get("a-z");
+
+            var result = rule.Process("a");
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual("a", result.Value);
+
+            for (char ch = 'b'; ch <= 'z'; ch++)
+                Assert.IsNotNull(rule.Process(ch.ToString()));
+
+            for (char ch = 'A'; ch <= 'Z'; ch++)
+                Assert.IsNull(rule.Process(ch.ToString()));
+
+            for (char ch = '0'; ch <= '9'; ch++)
+                Assert.IsNull(rule.Process(ch.ToString()));
+        }
     }
 }

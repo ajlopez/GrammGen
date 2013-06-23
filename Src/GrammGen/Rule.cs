@@ -15,6 +15,9 @@
 
         public static Rule Get(string text)
         {
+            if (text.Length == 3 && text[1] == '-')
+                return new CharacterRangeRule(text[0], text[2]);
+
             return new StringRule(text);
         }
 
