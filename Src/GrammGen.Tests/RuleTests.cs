@@ -81,5 +81,16 @@
             for (char ch = '0'; ch <= '9'; ch++)
                 Assert.IsNull(rule.Process(ch.ToString()));
         }
+
+        [TestMethod]
+        public void ProcessInteger()
+        {
+            var rule = Rule.Get("0-9").OneOrMore();
+
+            var result = rule.Process("123");
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual("123", result.Value);
+        }
     }
 }

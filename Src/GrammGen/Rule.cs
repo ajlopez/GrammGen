@@ -45,6 +45,11 @@
             return rule;
         }
 
+        public Rule OneOrMore()
+        {
+            return new OneOrMoreRule(this);
+        }
+
         public Element Process(string text)
         {
             return this.Process(new TextSource(text));
