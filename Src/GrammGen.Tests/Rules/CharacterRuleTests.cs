@@ -30,5 +30,25 @@
 
             Assert.IsNull(result);
         }
+
+        [TestMethod]
+        public void RejectEmptyString()
+        {
+            CharacterRule rule = new CharacterRule('a');
+
+            var result = rule.Process(string.Empty);
+
+            Assert.IsNull(result);
+        }
+
+        [TestMethod]
+        public void RejectNull()
+        {
+            CharacterRule rule = new CharacterRule('a');
+
+            var result = rule.Process((string)null);
+
+            Assert.IsNull(result);
+        }
     }
 }

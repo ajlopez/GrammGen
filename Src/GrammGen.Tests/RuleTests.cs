@@ -42,6 +42,32 @@
         }
 
         [TestMethod]
+        public void ProcessTwoStrings()
+        {
+            var rule = Rule.Get("abc", "def");
+
+            var result = rule.Process("abcdef");
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual("abcdef", result.Value);
+        }
+
+        [TestMethod]
+        public void GetWithInvalidArgument()
+        {
+            try
+            {
+                Rule.Get(123);
+                Assert.Fail();
+            }
+            catch (Exception ex)
+            {
+                Assert.IsInstanceOfType(ex, typeof(ArgumentException));
+                Assert.AreEqual("Invalid rule argument", ex.Message);
+            }
+        }
+
+        [TestMethod]
         public void RejectString()
         {
             var rule = Rule.Get("abc");

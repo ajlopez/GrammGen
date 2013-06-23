@@ -20,5 +20,15 @@
             Assert.IsNotNull(result);
             Assert.AreEqual("abc", result.Value);
         }
+
+        [TestMethod]
+        public void RejectEmptyString()
+        {
+            OneOrMoreRule rule = new OneOrMoreRule(new CharacterRangeRule('a', 'z'));
+
+            var result = rule.Process(string.Empty);
+
+            Assert.IsNull(result);
+        }
     }
 }

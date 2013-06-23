@@ -23,5 +23,27 @@
             Assert.IsNotNull(result);
             Assert.AreEqual("ab", result.Value);
         }
+
+        [TestMethod]
+        public void RejectFirstRule()
+        {
+            CharacterRule rule1 = new CharacterRule('a');
+            CharacterRule rule2 = new CharacterRule('b');
+
+            AndRule rule = new AndRule(rule1, rule2);
+
+            Assert.IsNull(rule.Process("bb"));
+        }
+
+        [TestMethod]
+        public void RejectSecondRule()
+        {
+            CharacterRule rule1 = new CharacterRule('a');
+            CharacterRule rule2 = new CharacterRule('b');
+
+            AndRule rule = new AndRule(rule1, rule2);
+
+            Assert.IsNull(rule.Process("aa"));
+        }
     }
 }
