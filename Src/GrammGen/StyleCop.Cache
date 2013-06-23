@@ -18,9 +18,6 @@
     <milliseconds>347</milliseconds>
     <violations />
   </sourcecode>
-  <project key="-983624511">
-    <configuration>DEBUG;TRACE</configuration>
-  </project>
   <sourcecode name="ILexerProcessor.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
     <settings>
       <timestamp>06/21/2013 16:20:37</timestamp>
@@ -46,6 +43,18 @@
     </settings>
     <timestamp>06/21/2013 18:20:11</timestamp>
     <milliseconds>92</milliseconds>
+    <violations />
+  </sourcecode>
+  <project key="-983624511">
+    <configuration>DEBUG;TRACE</configuration>
+  </project>
+  <sourcecode name="CharacterRule.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/21/2013 16:20:37</timestamp>
+      <milliseconds>419</milliseconds>
+    </settings>
+    <timestamp>06/23/2013 07:59:42</timestamp>
+    <milliseconds>133</milliseconds>
     <violations />
   </sourcecode>
 </stylecopresultscache>

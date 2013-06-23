@@ -45,6 +45,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Element.cs" />
+    <Compile Include="ISource.cs" />
+    <Compile Include="Rules\CharacterRule.cs" />
     <Compile Include="ParserElement.cs" />
     <Compile Include="ILexerProcessor.cs" />
     <Compile Include="IParserProcessor.cs" />
@@ -53,6 +56,8 @@
     <Compile Include="Parser.cs" />
     <Compile Include="ParserBuilder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Rule.cs" />
+    <Compile Include="TextSource.cs" />
     <Compile Include="Token.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
