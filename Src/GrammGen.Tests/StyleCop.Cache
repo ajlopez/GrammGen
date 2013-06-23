@@ -9,9 +9,6 @@
     <milliseconds>871</milliseconds>
     <violations />
   </sourcecode>
-  <project key="-1034988038">
-    <configuration>DEBUG;TRACE</configuration>
-  </project>
   <sourcecode name="LexerTests.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
     <settings>
       <timestamp>06/21/2013 16:21:35</timestamp>
@@ -26,5 +23,98 @@
         <warning>False</warning>
       </violation>
     </violations>
+  </sourcecode>
+  <sourcecode name="AndRuleTests.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/21/2013 16:21:35</timestamp>
+      <milliseconds>619</milliseconds>
+    </settings>
+    <timestamp>06/23/2013 15:13:27</timestamp>
+    <milliseconds>44</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="CharacterRangeRuleTests.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/21/2013 16:21:35</timestamp>
+      <milliseconds>619</milliseconds>
+    </settings>
+    <timestamp>06/23/2013 14:34:38</timestamp>
+    <milliseconds>995</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="CharacterRuleTests.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/21/2013 16:21:35</timestamp>
+      <milliseconds>619</milliseconds>
+    </settings>
+    <timestamp>06/23/2013 15:14:53</timestamp>
+    <milliseconds>732</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="GenerateRuleTests.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/21/2013 16:21:35</timestamp>
+      <milliseconds>619</milliseconds>
+    </settings>
+    <timestamp>06/23/2013 16:27:21</timestamp>
+    <milliseconds>449</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="OneOrMoreRuleTests.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/21/2013 16:21:35</timestamp>
+      <milliseconds>619</milliseconds>
+    </settings>
+    <timestamp>06/23/2013 15:16:03</timestamp>
+    <milliseconds>691</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="StringRuleTests.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/21/2013 16:21:35</timestamp>
+      <milliseconds>619</milliseconds>
+    </settings>
+    <timestamp>06/23/2013 08:37:14</timestamp>
+    <milliseconds>723</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="ZeroOrMoreRuleTests.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/21/2013 16:21:35</timestamp>
+      <milliseconds>619</milliseconds>
+    </settings>
+    <timestamp>06/23/2013 15:07:21</timestamp>
+    <milliseconds>404</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="OrRuleTests.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/21/2013 16:21:35</timestamp>
+      <milliseconds>619</milliseconds>
+    </settings>
+    <timestamp>06/23/2013 15:59:41</timestamp>
+    <milliseconds>534</milliseconds>
+    <violations />
+  </sourcecode>
+  <project key="-1034988038">
+    <configuration>DEBUG;TRACE</configuration>
+  </project>
+  <sourcecode name="ParserTests.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/21/2013 16:21:35</timestamp>
+      <milliseconds>619</milliseconds>
+    </settings>
+    <timestamp>06/23/2013 16:30:39</timestamp>
+    <milliseconds>956</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="RuleTests.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/21/2013 16:21:35</timestamp>
+      <milliseconds>619</milliseconds>
+    </settings>
+    <timestamp>06/23/2013 16:30:40</timestamp>
+    <milliseconds>118</milliseconds>
+    <violations />
   </sourcecode>
 </stylecopresultscache>

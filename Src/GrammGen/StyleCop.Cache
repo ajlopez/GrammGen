@@ -45,16 +45,115 @@
     <milliseconds>92</milliseconds>
     <violations />
   </sourcecode>
-  <project key="-983624511">
-    <configuration>DEBUG;TRACE</configuration>
-  </project>
+  <sourcecode name="IParser.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/21/2013 16:20:37</timestamp>
+      <milliseconds>419</milliseconds>
+    </settings>
+    <timestamp>06/23/2013 16:13:09</timestamp>
+    <milliseconds>772</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="Element.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/21/2013 16:20:37</timestamp>
+      <milliseconds>419</milliseconds>
+    </settings>
+    <timestamp>06/23/2013 08:00:49</timestamp>
+    <milliseconds>636</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="Rule.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/21/2013 16:20:37</timestamp>
+      <milliseconds>419</milliseconds>
+    </settings>
+    <timestamp>06/23/2013 16:13:09</timestamp>
+    <milliseconds>711</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="Parser.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/21/2013 16:20:37</timestamp>
+      <milliseconds>419</milliseconds>
+    </settings>
+    <timestamp>06/23/2013 16:18:29</timestamp>
+    <milliseconds>238</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="AndRule.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/21/2013 16:20:37</timestamp>
+      <milliseconds>419</milliseconds>
+    </settings>
+    <timestamp>06/23/2013 16:13:09</timestamp>
+    <milliseconds>481</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="CharacterRangeRule.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/21/2013 16:20:37</timestamp>
+      <milliseconds>419</milliseconds>
+    </settings>
+    <timestamp>06/23/2013 16:13:09</timestamp>
+    <milliseconds>600</milliseconds>
+    <violations />
+  </sourcecode>
   <sourcecode name="CharacterRule.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
     <settings>
       <timestamp>06/21/2013 16:20:37</timestamp>
       <milliseconds>419</milliseconds>
     </settings>
-    <timestamp>06/23/2013 07:59:42</timestamp>
-    <milliseconds>133</milliseconds>
+    <timestamp>06/23/2013 16:13:09</timestamp>
+    <milliseconds>881</milliseconds>
     <violations />
   </sourcecode>
+  <sourcecode name="GenerateRule.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/21/2013 16:20:37</timestamp>
+      <milliseconds>419</milliseconds>
+    </settings>
+    <timestamp>06/23/2013 16:25:38</timestamp>
+    <milliseconds>631</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="OrRule.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/21/2013 16:20:37</timestamp>
+      <milliseconds>419</milliseconds>
+    </settings>
+    <timestamp>06/23/2013 16:13:09</timestamp>
+    <milliseconds>833</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="OneOrMoreRule.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/21/2013 16:20:37</timestamp>
+      <milliseconds>419</milliseconds>
+    </settings>
+    <timestamp>06/23/2013 16:13:09</timestamp>
+    <milliseconds>647</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="StringRule.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/21/2013 16:20:37</timestamp>
+      <milliseconds>419</milliseconds>
+    </settings>
+    <timestamp>06/23/2013 16:13:09</timestamp>
+    <milliseconds>416</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="ZeroOrMoreRule.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/21/2013 16:20:37</timestamp>
+      <milliseconds>419</milliseconds>
+    </settings>
+    <timestamp>06/23/2013 16:13:09</timestamp>
+    <milliseconds>350</milliseconds>
+    <violations />
+  </sourcecode>
+  <project key="-983624511">
+    <configuration>DEBUG;TRACE</configuration>
+  </project>
 </stylecopresultscache>

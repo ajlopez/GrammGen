@@ -1,9 +1,9 @@
 ﻿namespace GrammGen.Tests
 {
     using System;
-    using System.Text;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Text;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     [TestClass]
@@ -23,7 +23,7 @@
         [TestMethod]
         public void NextCharFromNull()
         {
-            Parser source = new Parser((string) null);
+            Parser source = new Parser((string)null);
 
             Assert.AreEqual(-1, source.NextChar());
         }
