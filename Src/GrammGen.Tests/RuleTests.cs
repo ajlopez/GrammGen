@@ -199,7 +199,7 @@
         {
             try
             {
-                Rule.Or("abc", 123);
+                Rule.Or("abcdef", 123);
                 Assert.Fail();
             }
             catch (Exception ex)
