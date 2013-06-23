@@ -17,6 +17,17 @@
             var result = rule.Process("a");
 
             Assert.IsNotNull(result);
+            Assert.AreEqual("a", result.Value);
+        }
+
+        [TestMethod]
+        public void RejectCharacter()
+        {
+            var rule = Rule.Get('a');
+
+            var result = rule.Process("b");
+
+            Assert.IsNull(result);
         }
     }
 }
