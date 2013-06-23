@@ -2,25 +2,23 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.IO;
     using System.Linq;
     using System.Text;
 
     public class Parser : IParser
     {
-        private string text;
-        private int position;
-        private int length;
+        private TextReader reader;
         private Stack<Element> elements = new Stack<Element>();
 
         public Parser(string text)
+            : this(new StringReader(text == null ? string.Empty : text))
         {
-            this.text = text;
-            this.position = 0;
+        }
 
-            if (text == null)
-                this.length = 0;
-            else
-                this.length = text.Length;
+        public Parser(TextReader reader)
+        {
+            this.reader = reader;
         }
 
         public int NextChar()
@@ -53,10 +51,7 @@
                 return -2;
             }
 
-            if (this.position >= this.length)
-                return -1;
-
-            return this.text[this.position++];
+            return this.reader.Read();
         }
 
         public void Push(int ich)

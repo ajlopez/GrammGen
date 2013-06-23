@@ -23,7 +23,7 @@
         [TestMethod]
         public void NextCharFromNull()
         {
-            Parser source = new Parser(null);
+            Parser source = new Parser((string)null);
 
             Assert.AreEqual(-1, source.NextChar());
         }
