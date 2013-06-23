@@ -29,5 +29,26 @@
 
             Assert.IsNull(result);
         }
+
+        [TestMethod]
+        public void ProcessString()
+        {
+            var rule = Rule.Get("abc");
+
+            var result = rule.Process("abc");
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual("abc", result.Value);
+        }
+
+        [TestMethod]
+        public void RejectString()
+        {
+            var rule = Rule.Get("abc");
+
+            var result = rule.Process("def");
+
+            Assert.IsNull(result);
+        }
     }
 }

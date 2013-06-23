@@ -13,6 +13,11 @@
             return new CharacterRule(ch);
         }
 
+        public static Rule Get(string text)
+        {
+            return new StringRule(text);
+        }
+
         public Element Process(string text)
         {
             return this.Process(new TextSource(text));
