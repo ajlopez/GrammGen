@@ -5,7 +5,7 @@
     using System.Linq;
     using System.Text;
 
-    public interface ISource
+    public interface IParser
     {
         int NextChar();
 

@@ -16,7 +16,7 @@
             this.rightrule = rightrule;
         }
 
-        public override Element Process(ISource source)
+        public override Element Process(IParser source)
         {
             var left = this.leftrule.Process(source);
 

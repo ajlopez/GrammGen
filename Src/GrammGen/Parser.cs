@@ -5,14 +5,14 @@
     using System.Linq;
     using System.Text;
 
-    public class TextSource : ISource
+    public class Parser : IParser
     {
         private string text;
         private int position;
         private int length;
         private Stack<Element> elements = new Stack<Element>();
 
-        public TextSource(string text)
+        public Parser(string text)
         {
             this.text = text;
             this.position = 0;

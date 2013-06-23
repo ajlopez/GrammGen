@@ -7,12 +7,12 @@
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     [TestClass]
-    public class TextSourceTests
+    public class ParserTests
     {
         [TestMethod]
         public void GetCharacters()
         {
-            TextSource source = new TextSource("abc");
+            Parser source = new Parser("abc");
 
             Assert.AreEqual('a', source.NextChar());
             Assert.AreEqual('b', source.NextChar());
@@ -23,7 +23,7 @@
         [TestMethod]
         public void NextCharFromNull()
         {
-            TextSource source = new TextSource(null);
+            Parser source = new Parser(null);
 
             Assert.AreEqual(-1, source.NextChar());
         }

@@ -47,7 +47,7 @@
     <Compile Include="Rules\OneOrMoreRuleTests.cs" />
     <Compile Include="Rules\StringRuleTests.cs" />
     <Compile Include="RuleTests.cs" />
-    <Compile Include="TextSourceTests.cs" />
+    <Compile Include="ParserTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GrammGen\GrammGen.csproj">

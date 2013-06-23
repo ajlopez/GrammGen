@@ -16,7 +16,7 @@
             this.to = to;
         }
 
-        public override Element Process(ISource source)
+        public override Element Process(IParser source)
         {
             int ich = source.NextChar();
 

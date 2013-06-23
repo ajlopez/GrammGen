@@ -81,9 +81,9 @@
 
         public Element Process(string text)
         {
-            return this.Process(new TextSource(text));
+            return this.Process(new Parser(text));
         }
 
-        public abstract Element Process(ISource source);
+        public abstract Element Process(IParser source);
     }
 }

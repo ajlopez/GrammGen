@@ -14,7 +14,7 @@
             this.rule = rule;
         }
 
-        public override Element Process(ISource source)
+        public override Element Process(IParser source)
         {
             var result = this.rule.Process(source);
 

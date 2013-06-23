@@ -46,7 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Element.cs" />
-    <Compile Include="ISource.cs" />
+    <Compile Include="IParser.cs" />
     <Compile Include="Rules\AndRule.cs" />
     <Compile Include="Rules\CharacterRule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -56,7 +56,7 @@
     <Compile Include="Rules\ZeroOrMoreRule.cs" />
     <Compile Include="Rules\OneOrMoreRule.cs" />
     <Compile Include="Rules\StringRule.cs" />
-    <Compile Include="TextSource.cs" />
+    <Compile Include="Parser.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
