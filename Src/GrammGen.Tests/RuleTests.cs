@@ -140,5 +140,73 @@
             Assert.IsNotNull(result);
             Assert.AreEqual(string.Empty, result.Value);
         }
+
+        [TestMethod]
+        public void ProcessOrCharacters()
+        {
+            var rule = Rule.Or('a', 'b');
+
+            var result = rule.Process("ac");
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual("a", result.Value);
+
+            result = rule.Process("bc");
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual("b", result.Value);
+        }
+
+        [TestMethod]
+        public void ProcessOrStrings()
+        {
+            var rule = Rule.Or("abc", "abd");
+
+            var result = rule.Process("abc");
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual("abc", result.Value);
+
+            result = rule.Process("abd");
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual("abd", result.Value);
+        }
+
+        [TestMethod]
+        public void ProcessOrCharacterRanges()
+        {
+            var rule = Rule.Or("a-z", "A-Z", "0-9");
+
+            var result = rule.Process("g");
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual("g", result.Value);
+
+            result = rule.Process("M");
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual("M", result.Value);
+
+            result = rule.Process("7");
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual("7", result.Value);
+        }
+
+        [TestMethod]
+        public void OrWithInvalidArgument()
+        {
+            try
+            {
+                Rule.Or("abc", 123);
+                Assert.Fail();
+            }
+            catch (Exception ex)
+            {
+                Assert.IsInstanceOfType(ex, typeof(ArgumentException));
+                Assert.AreEqual("Invalid rule argument", ex.Message);
+            }
+        }
     }
 }

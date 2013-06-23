@@ -26,7 +26,10 @@
             var right = this.rightrule.Process(source);
 
             if (right == null)
+            {
+                source.Push((string)left.Value);
                 return null;
+            }
 
             return new Element(null, (string)left.Value + (string)right.Value);
         }

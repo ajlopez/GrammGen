@@ -45,6 +45,30 @@
             return rule;
         }
 
+        public static Rule Or(params object[] arguments)
+        {
+            Rule rule = null;
+
+            foreach (var argument in arguments)
+            {
+                Rule newrule;
+
+                if (argument is char)
+                    newrule = Get((char)argument);
+                else if (argument is string)
+                    newrule = Get((string)argument);
+                else
+                    throw new ArgumentException("Invalid rule argument");
+
+                if (rule == null)
+                    rule = newrule;
+                else
+                    rule = new OrRule(rule, newrule);
+            }
+
+            return rule;
+        }
+
         public Rule OneOrMore()
         {
             return new OneOrMoreRule(this);

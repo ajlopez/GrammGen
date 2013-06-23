@@ -93,6 +93,47 @@
         }
 
         [TestMethod]
+        public void ProcessFirstAndRule()
+        {
+            AndRule rule1 = new AndRule(new CharacterRule('a'), new CharacterRule('b'));
+            AndRule rule2 = new AndRule(new CharacterRule('a'), new CharacterRule('c'));
+
+            OrRule rule = new OrRule(rule1, rule2);
+
+            var result = rule.Process("ab");
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual("ab", result.Value);
+        }
+
+        [TestMethod]
+        public void ProcessSecondAndRule()
+        {
+            AndRule rule1 = new AndRule(new CharacterRule('a'), new CharacterRule('b'));
+            AndRule rule2 = new AndRule(new CharacterRule('a'), new CharacterRule('c'));
+
+            OrRule rule = new OrRule(rule1, rule2);
+
+            var result = rule.Process("ac");
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual("ac", result.Value);
+        }
+
+        [TestMethod]
+        public void RejectAndRules()
+        {
+            AndRule rule1 = new AndRule(new CharacterRule('a'), new CharacterRule('b'));
+            AndRule rule2 = new AndRule(new CharacterRule('a'), new CharacterRule('c'));
+
+            OrRule rule = new OrRule(rule1, rule2);
+
+            var result = rule.Process("ad");
+
+            Assert.IsNull(result);
+        }
+
+        [TestMethod]
         public void ProcessFirstStringRule()
         {
             StringRule rule1 = new StringRule("abc");
