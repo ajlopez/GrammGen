@@ -50,5 +50,16 @@
 
             Assert.IsNull(result);
         }
+
+        [TestMethod]
+        public void ProcessTwoCharacters()
+        {
+            var rule = Rule.Get('a', 'b');
+
+            var result = rule.Process("ab");
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual("ab", result.Value);
+        }
     }
 }

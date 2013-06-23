@@ -47,6 +47,7 @@
   <ItemGroup>
     <Compile Include="Element.cs" />
     <Compile Include="ISource.cs" />
+    <Compile Include="Rules\AndRule.cs" />
     <Compile Include="Rules\CharacterRule.cs" />
     <Compile Include="ParserElement.cs" />
     <Compile Include="ILexerProcessor.cs" />
