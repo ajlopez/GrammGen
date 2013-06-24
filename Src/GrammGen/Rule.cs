@@ -79,6 +79,11 @@
             return new ZeroOrMoreRule(this);
         }
 
+        public Rule Generate(string type)
+        {
+            return new GenerateRule(this, type);
+        }
+
         public Element Process(string text)
         {
             return this.Process(new Parser(text));

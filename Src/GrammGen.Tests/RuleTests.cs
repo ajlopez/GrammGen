@@ -208,5 +208,17 @@
                 Assert.AreEqual("Invalid rule argument", ex.Message);
             }
         }
+
+        [TestMethod]
+        public void GenerateInteger()
+        {
+            Rule rule = Rule.Get("0-9").OneOrMore().Generate("Integer");
+
+            var result = rule.Process("123");
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual("123", result.Value);
+            Assert.AreEqual("Integer", result.Type);
+        }
     }
 }
