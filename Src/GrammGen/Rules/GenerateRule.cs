@@ -16,6 +16,14 @@
             this.type = type;
         }
 
+        public override string Type
+        {
+            get
+            {
+                return this.type;
+            }
+        }
+
         public override Element Process(IParser source)
         {
             var result = this.rule.Process(source);

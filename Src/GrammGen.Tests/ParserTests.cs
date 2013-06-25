@@ -12,20 +12,50 @@
         [TestMethod]
         public void GetCharacters()
         {
-            Parser source = new Parser("abc");
+            Parser parser = new Parser("abc");
 
-            Assert.AreEqual('a', source.NextChar());
-            Assert.AreEqual('b', source.NextChar());
-            Assert.AreEqual('c', source.NextChar());
-            Assert.AreEqual(-1, source.NextChar());
+            Assert.AreEqual('a', parser.NextChar());
+            Assert.AreEqual('b', parser.NextChar());
+            Assert.AreEqual('c', parser.NextChar());
+            Assert.AreEqual(-1, parser.NextChar());
         }
 
         [TestMethod]
         public void NextCharFromNull()
         {
-            Parser source = new Parser((string)null);
+            Parser parser = new Parser((string)null);
 
-            Assert.AreEqual(-1, source.NextChar());
+            Assert.AreEqual(-1, parser.NextChar());
+        }
+
+        [TestMethod]
+        public void ParseWithoutRules()
+        {
+            Parser parser = new Parser("123");
+
+            Assert.IsNull(parser.Parse("Integer"));
+        }
+
+        [TestMethod]
+        public void ParseInteger()
+        {
+            Rule rule = Rule.Get("0-9").OneOrMore().Generate("Integer");
+            Parser parser = new Parser("123", new Rule[] { rule });
+
+            var result = parser.Parse("Integer");
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual("123", result.Value);
+            Assert.AreEqual("Integer", result.Type);
+        }
+
+        [TestMethod]
+        public void ParseWordWithoutRule()
+        {
+            Rule rule = Rule.Get("0-9").OneOrMore().Generate("Integer");
+            Parser parser = new Parser("123", new Rule[] { rule });
+
+            Assert.IsNull(parser.Parse("Word"));
         }
     }
 }

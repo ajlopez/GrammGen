@@ -69,6 +69,8 @@
             return rule;
         }
 
+        public virtual string Type { get { return null; } }
+
         public Rule OneOrMore()
         {
             return new OneOrMoreRule(this);
