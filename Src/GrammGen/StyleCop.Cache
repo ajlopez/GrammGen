@@ -45,15 +45,6 @@
     <milliseconds>92</milliseconds>
     <violations />
   </sourcecode>
-  <sourcecode name="IParser.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>06/21/2013 16:20:37</timestamp>
-      <milliseconds>419</milliseconds>
-    </settings>
-    <timestamp>06/23/2013 16:13:09</timestamp>
-    <milliseconds>772</milliseconds>
-    <violations />
-  </sourcecode>
   <sourcecode name="Element.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
     <settings>
       <timestamp>06/21/2013 16:20:37</timestamp>
@@ -61,24 +52,6 @@
     </settings>
     <timestamp>06/23/2013 08:00:49</timestamp>
     <milliseconds>636</milliseconds>
-    <violations />
-  </sourcecode>
-  <sourcecode name="Rule.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>06/21/2013 16:20:37</timestamp>
-      <milliseconds>419</milliseconds>
-    </settings>
-    <timestamp>06/23/2013 16:13:09</timestamp>
-    <milliseconds>711</milliseconds>
-    <violations />
-  </sourcecode>
-  <sourcecode name="Parser.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>06/21/2013 16:20:37</timestamp>
-      <milliseconds>419</milliseconds>
-    </settings>
-    <timestamp>06/23/2013 16:18:29</timestamp>
-    <milliseconds>238</milliseconds>
     <violations />
   </sourcecode>
   <sourcecode name="AndRule.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
@@ -106,15 +79,6 @@
     </settings>
     <timestamp>06/23/2013 16:13:09</timestamp>
     <milliseconds>881</milliseconds>
-    <violations />
-  </sourcecode>
-  <sourcecode name="GenerateRule.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>06/21/2013 16:20:37</timestamp>
-      <milliseconds>419</milliseconds>
-    </settings>
-    <timestamp>06/23/2013 16:25:38</timestamp>
-    <milliseconds>631</milliseconds>
     <violations />
   </sourcecode>
   <sourcecode name="OrRule.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
@@ -151,6 +115,51 @@
     </settings>
     <timestamp>06/23/2013 16:13:09</timestamp>
     <milliseconds>350</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="IParser.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/21/2013 16:20:37</timestamp>
+      <milliseconds>419</milliseconds>
+    </settings>
+    <timestamp>07/06/2013 14:29:40</timestamp>
+    <milliseconds>190</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="ElementRule.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/21/2013 16:20:37</timestamp>
+      <milliseconds>419</milliseconds>
+    </settings>
+    <timestamp>07/06/2013 14:32:45</timestamp>
+    <milliseconds>189</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="GenerateRule.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/21/2013 16:20:37</timestamp>
+      <milliseconds>419</milliseconds>
+    </settings>
+    <timestamp>06/25/2013 06:40:39</timestamp>
+    <milliseconds>417</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="Rule.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/21/2013 16:20:37</timestamp>
+      <milliseconds>419</milliseconds>
+    </settings>
+    <timestamp>07/06/2013 20:14:39</timestamp>
+    <milliseconds>747</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="Parser.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>06/21/2013 16:20:37</timestamp>
+      <milliseconds>419</milliseconds>
+    </settings>
+    <timestamp>07/06/2013 20:14:54</timestamp>
+    <milliseconds>722</milliseconds>
     <violations />
   </sourcecode>
   <project key="-983624511">

@@ -50,6 +50,22 @@
         }
 
         [TestMethod]
+        public void ParseIntegerSkippingSpaces()
+        {
+            Rule rule = Rule.Get("0-9").OneOrMore().Generate("Integer");
+            Rule skip = Rule.Get(' ').Generate(Parser.Skip);
+            Parser parser = new Parser("  123  ", new Rule[] { rule, skip });
+
+            var result = parser.Parse("Integer");
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual("123", result.Value);
+            Assert.AreEqual("Integer", result.Type);
+
+            Assert.IsNull(parser.Parse("Integer"));
+        }
+
+        [TestMethod]
         public void ParseWordWithoutRule()
         {
             Rule rule = Rule.Get("0-9").OneOrMore().Generate("Integer");

@@ -8,6 +8,8 @@
 
     public class Parser : IParser
     {
+        public const string Skip = "_Skip";
+
         private TextReader reader;
         private Stack<Element> elements = new Stack<Element>();
         private IList<Rule> rules;
@@ -40,6 +42,10 @@
         {
             if (this.rules == null)
                 return null;
+
+            while (this.ProcessSkipRules())
+            {
+            }
 
             foreach (var rule in this.rules.Where(r => r.Type == type))
             {
@@ -93,6 +99,19 @@
         public void Push(string text)
         {
             this.elements.Push(new Element(null, text));
+        }
+
+        private bool ProcessSkipRules()
+        {
+            foreach (var rule in this.rules.Where(r => r.Type == Skip))
+            {
+                var result = rule.Process(this);
+
+                if (result != null)
+                    return true;
+            }
+
+            return false;
         }
     }
 }

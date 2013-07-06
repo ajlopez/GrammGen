@@ -104,8 +104,8 @@
       <timestamp>06/21/2013 16:21:35</timestamp>
       <milliseconds>619</milliseconds>
     </settings>
-    <timestamp>06/23/2013 16:30:39</timestamp>
-    <milliseconds>956</milliseconds>
+    <timestamp>07/06/2013 20:12:26</timestamp>
+    <milliseconds>707</milliseconds>
     <violations />
   </sourcecode>
   <sourcecode name="RuleTests.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
@@ -113,8 +113,8 @@
       <timestamp>06/21/2013 16:21:35</timestamp>
       <milliseconds>619</milliseconds>
     </settings>
-    <timestamp>06/23/2013 16:30:40</timestamp>
-    <milliseconds>118</milliseconds>
+    <timestamp>06/24/2013 06:56:59</timestamp>
+    <milliseconds>100</milliseconds>
     <violations />
   </sourcecode>
 </stylecopresultscache>

@@ -8,6 +8,8 @@
 
     public abstract class Rule
     {
+        public virtual string Type { get { return null; } }
+
         public static Rule Get(char ch)
         {
             return new CharacterRule(ch);
@@ -71,8 +73,6 @@
 
             return rule;
         }
-
-        public virtual string Type { get { return null; } }
 
         public Rule OneOrMore()
         {
