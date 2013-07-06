@@ -18,6 +18,9 @@
             if (text.Length == 3 && text[1] == '-')
                 return new CharacterRangeRule(text[0], text[2]);
 
+            if (char.IsUpper(text[0]))
+                return new ElementRule(text);
+
             return new StringRule(text);
         }
 

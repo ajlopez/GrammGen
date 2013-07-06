@@ -57,5 +57,16 @@
 
             Assert.IsNull(parser.Parse("Word"));
         }
+
+        [TestMethod]
+        public void ParseWord()
+        {
+            Rule rule = Rule.Get("0-9").OneOrMore().Generate("Integer");
+            Rule rule2 = Rule.Get("Integer").Generate("Word");
+
+            Parser parser = new Parser("123", new Rule[] { rule, rule2 });
+
+            Assert.IsNotNull(parser.Parse("Word"));
+        }
     }
 }

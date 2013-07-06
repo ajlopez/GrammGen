@@ -12,5 +12,7 @@
         void Push(int ich);
 
         void Push(string text);
+
+        Element Parse(string type);
     }
 }
