@@ -220,5 +220,26 @@
             Assert.AreEqual("123", result.Value);
             Assert.AreEqual("Integer", result.Type);
         }
+
+        [TestMethod]
+        public void CombineStrings()
+        {
+            Assert.AreEqual("12", Rule.Combine("1", "2"));
+        }
+
+        [TestMethod]
+        public void CombineIntegers()
+        {
+            var result = Rule.Combine(123, 456);
+
+            Assert.IsNotNull(result);
+            Assert.IsInstanceOfType(result, typeof(IList<object>));
+
+            var list = (IList<object>)result;
+
+            Assert.AreEqual(2, list.Count);
+            Assert.AreEqual(123, list[0]);
+            Assert.AreEqual(456, list[1]);
+        }
     }
 }

@@ -84,5 +84,16 @@
 
             Assert.IsNotNull(parser.Parse("Word"));
         }
+
+        [TestMethod]
+        public void ParseAddIntegers()
+        {
+            Rule rule = Rule.Get("0-9").OneOrMore().Generate("Integer", x => int.Parse((string)x, System.Globalization.CultureInfo.InvariantCulture));
+            Rule rule2 = Rule.Get("Integer", '+', "Integer").Generate("Add");
+
+            Parser parser = new Parser("123+456", new Rule[] { rule, rule2 });
+
+            Assert.IsNotNull(parser.Parse("Add"));
+        }
     }
 }

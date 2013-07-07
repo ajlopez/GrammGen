@@ -31,7 +31,7 @@
                 return null;
             }
 
-            return new Element(null, (string)left.Value + (string)right.Value);
+            return new Element(null, Rule.Combine(left.Value, right.Value));
         }
     }
 }

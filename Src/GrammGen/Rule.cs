@@ -74,6 +74,14 @@
             return rule;
         }
 
+        public static object Combine(object left, object right)
+        {
+            if (left is string && right is string)
+                return (string)left + (string)right;
+
+            return new List<object>() { left, right };
+        }
+
         public Rule OneOrMore()
         {
             return new OneOrMoreRule(this);
@@ -87,6 +95,11 @@
         public Rule Generate(string type)
         {
             return new GenerateRule(this, type);
+        }
+
+        public Rule Generate(string type, Func<object, object> func)
+        {
+            return new GenerateRule(this, type, func);
         }
 
         public Element Process(string text)
