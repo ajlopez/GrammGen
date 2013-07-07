@@ -55,6 +55,7 @@
     <Compile Include="Rules\ElementRule.cs" />
     <Compile Include="Rules\GenerateRule.cs" />
     <Compile Include="Rules\OrRule.cs" />
+    <Compile Include="Rules\UpToRule.cs" />
     <Compile Include="Rules\ZeroOrMoreRule.cs" />
     <Compile Include="Rules\OneOrMoreRule.cs" />
     <Compile Include="Rules\StringRule.cs" />

@@ -44,6 +44,7 @@
     <Compile Include="Rules\CharacterRangeRuleTests.cs" />
     <Compile Include="Rules\GenerateRuleTests.cs" />
     <Compile Include="Rules\OrRuleTests.cs" />
+    <Compile Include="Rules\UpToRuleTests.cs" />
     <Compile Include="Rules\ZeroOrMoreRuleTests.cs" />
     <Compile Include="Rules\OneOrMoreRuleTests.cs" />
     <Compile Include="Rules\StringRuleTests.cs" />
