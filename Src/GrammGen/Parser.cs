@@ -97,14 +97,12 @@
             return this.reader.Read();
         }
 
-        public void Push(int ich)
+        public void Push(object obj)
         {
-            this.elements.Push(new Element(null, ich));
-        }
-
-        public void Push(string text)
-        {
-            this.elements.Push(new Element(null, text));
+            if (obj is Element)
+                this.elements.Push((Element)obj);
+            else
+                this.elements.Push(new Element(null, obj));
         }
 
         private bool ProcessSkipRules()

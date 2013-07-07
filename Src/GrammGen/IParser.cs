@@ -9,9 +9,7 @@
     {
         int NextChar();
 
-        void Push(int ich);
-
-        void Push(string text);
+        void Push(object obj);
 
         Element Parse(string type);
     }

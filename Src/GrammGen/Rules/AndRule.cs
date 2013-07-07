@@ -27,7 +27,7 @@
 
             if (right == null)
             {
-                source.Push((string)left.Value);
+                source.Push(left.Value);
                 return null;
             }
 
