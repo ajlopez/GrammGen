@@ -10,6 +10,14 @@
         private Rule leftrule;
         private Rule rightrule;
 
+        public override string LeftType
+        {
+            get
+            {
+                return this.leftrule.LeftType;
+            }
+        }
+
         public AndRule(Rule leftrule, Rule rightrule)
         {
             this.leftrule = leftrule;

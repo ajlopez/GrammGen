@@ -43,11 +43,14 @@
             if (this.rules == null)
                 return null;
 
+            if (this.elements.Count > 0 && this.elements.Peek() is Element && ((Element)this.elements.Peek()).Type == type)
+                return this.elements.Pop();
+
             while (this.ProcessSkipRules())
             {
             }
 
-            foreach (var rule in this.rules.Where(r => r.Type == type))
+            foreach (var rule in this.rules.Where(r => r.Type == type && r.LeftType != type))
             {
                 var result = rule.Process(this);
 
@@ -55,6 +58,14 @@
                 {
                     while (this.ProcessSkipRules())
                     {
+                    }
+
+                    var newresult = this.ProcessLeftRecursionRules(type, result);
+
+                    while (newresult != null)
+                    {
+                        result = newresult;
+                        newresult = this.ProcessLeftRecursionRules(type, result);
                     }
 
                     return result;
@@ -116,6 +127,23 @@
             }
 
             return false;
+        }
+
+        private Element ProcessLeftRecursionRules(string type, Element result)
+        {
+            this.Push(result);
+
+            foreach (var rule in this.rules.Where(r => r.Type == type && r.LeftType == type))
+            {
+                var newresult = rule.Process(this);
+
+                if (newresult != null)
+                    return newresult;
+            }
+
+            this.elements.Pop();
+
+            return null;
         }
     }
 }

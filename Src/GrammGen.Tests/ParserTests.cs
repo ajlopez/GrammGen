@@ -132,5 +132,33 @@
 
             Assert.IsNull(parser.Parse("Add"));
         }
+
+        [TestMethod]
+        public void ParseAddIntegersUsingLeftRecursion()
+        {
+            Rule ruleint = Rule.Get("0-9").OneOrMore().Generate("Integer", x => int.Parse((string)x, System.Globalization.CultureInfo.InvariantCulture));
+            Rule ruleexpr = Rule.Get("Expression", '+', "Integer").Generate("Expression");
+            Rule ruleintexpr = Rule.Get("Integer").Generate("Expression");
+
+            Assert.AreEqual("Expression", ruleexpr.LeftType);
+
+            Parser parser = new Parser("123+456+789", new Rule[] { ruleint, ruleexpr, ruleintexpr });
+
+            var result = parser.Parse("Expression");
+
+            Assert.IsNotNull(result);
+            Assert.IsInstanceOfType(result.Value, typeof(IList<object>));
+
+            var list = (IList<object>)result.Value;
+
+            Assert.AreEqual(5, list.Count);
+            Assert.AreEqual(123, list[0]);
+            Assert.AreEqual("+", list[1]);
+            Assert.AreEqual(456, list[2]);
+            Assert.AreEqual("+", list[3]);
+            Assert.AreEqual(789, list[4]);
+
+            Assert.IsNull(parser.Parse("Expression"));
+        }
     }
 }

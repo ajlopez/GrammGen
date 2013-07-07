@@ -14,6 +14,22 @@
             this.type = type;
         }
 
+        public override string Type
+        {
+            get
+            {
+                return this.type;
+            }
+        }
+
+        public override string LeftType
+        {
+            get
+            {
+                return this.type;
+            }
+        }
+
         public override Element Process(IParser source)
         {
             return source.Parse(this.type);

@@ -31,6 +31,14 @@
             }
         }
 
+        public override string LeftType
+        {
+            get
+            {
+                return this.rule.LeftType;
+            }
+        }
+
         public override Element Process(IParser source)
         {
             var result = this.rule.Process(source);

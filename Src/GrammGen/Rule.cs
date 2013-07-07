@@ -11,6 +11,8 @@
     {
         public virtual string Type { get { return null; } }
 
+        public virtual string LeftType { get { return null; } }
+
         public static Rule Get(char ch)
         {
             return new CharacterRule(ch);
