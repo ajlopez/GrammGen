@@ -1,6 +1,7 @@
 ﻿namespace GrammGen
 {
     using System;
+    using System.Collections;
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
@@ -78,6 +79,25 @@
         {
             if (left is string && right is string)
                 return (string)left + (string)right;
+
+            if (left is IEnumerable<object>)
+            {
+                var result = new List<object>((IEnumerable<object>)left);
+
+                if (right is IEnumerable<object>)
+                    result.AddRange((IEnumerable<object>)right);
+                else
+                    result.Add(right);
+
+                return result;
+            }
+
+            if (right is IEnumerable<object>)
+            {
+                var result = new List<object>((IEnumerable<object>)right);
+                result.Insert(0, left);
+                return result;
+            }
 
             return new List<object>() { left, right };
         }

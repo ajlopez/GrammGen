@@ -93,7 +93,19 @@
 
             Parser parser = new Parser("123+456", new Rule[] { rule, rule2 });
 
-            Assert.IsNotNull(parser.Parse("Add"));
+            var result = parser.Parse("Add");
+
+            Assert.IsNotNull(result);
+            Assert.IsInstanceOfType(result.Value, typeof(IList<object>));
+
+            var list = (IList<object>)result.Value;
+
+            Assert.AreEqual(3, list.Count);
+            Assert.AreEqual(123, list[0]);
+            Assert.AreEqual("+", list[1]);
+            Assert.AreEqual(456, list[2]);
+
+            Assert.IsNull(parser.Parse("Add"));
         }
     }
 }
