@@ -52,7 +52,13 @@
                 var result = rule.Process(this);
 
                 if (result != null)
+                {
+                    while (this.ProcessSkipRules())
+                    {
+                    }
+
                     return result;
+                }
             }
 
             return null;

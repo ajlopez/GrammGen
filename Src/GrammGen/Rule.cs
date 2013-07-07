@@ -112,6 +112,11 @@
             return new ZeroOrMoreRule(this);
         }
 
+        public Rule Skip()
+        {
+            return this.Generate(Parser.Skip);
+        }
+
         public Rule Generate(string type)
         {
             return new GenerateRule(this, type);

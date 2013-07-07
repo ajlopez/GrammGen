@@ -53,7 +53,7 @@
         public void ParseIntegerSkippingSpaces()
         {
             Rule rule = Rule.Get("0-9").OneOrMore().Generate("Integer");
-            Rule skip = Rule.Get(' ').Generate(Parser.Skip);
+            Rule skip = Rule.Get(' ').Skip();
             Parser parser = new Parser("  123  ", new Rule[] { rule, skip });
 
             var result = parser.Parse("Integer");
@@ -92,6 +92,31 @@
             Rule rule2 = Rule.Get("Integer", '+', "Integer").Generate("Add");
 
             Parser parser = new Parser("123+456", new Rule[] { rule, rule2 });
+
+            var result = parser.Parse("Add");
+
+            Assert.IsNotNull(result);
+            Assert.IsInstanceOfType(result.Value, typeof(IList<object>));
+
+            var list = (IList<object>)result.Value;
+
+            Assert.AreEqual(3, list.Count);
+            Assert.AreEqual(123, list[0]);
+            Assert.AreEqual("+", list[1]);
+            Assert.AreEqual(456, list[2]);
+
+            Assert.IsNull(parser.Parse("Add"));
+        }
+
+        [TestMethod]
+        public void ParseAddIntegersSkippingSpaces()
+        {
+            Rule skip = Rule.Get(' ').Skip();
+
+            Rule rule = Rule.Get("0-9").OneOrMore().Generate("Integer", x => int.Parse((string)x, System.Globalization.CultureInfo.InvariantCulture));
+            Rule rule2 = Rule.Get("Integer", '+', "Integer").Generate("Add");
+
+            Parser parser = new Parser("  123  + 456  ", new Rule[] { skip, rule, rule2 });
 
             var result = parser.Parse("Add");
 
