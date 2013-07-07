@@ -23,6 +23,18 @@
         }
 
         [TestMethod]
+        public void GetTransformedInteger()
+        {
+            GenerateRule rule = new GenerateRule(Rule.Get("0-9").OneOrMore(), "Integer", x => int.Parse((string)x, System.Globalization.CultureInfo.InvariantCulture));
+
+            var result = rule.Process("123");
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual(123, result.Value);
+            Assert.AreEqual("Integer", result.Type);
+        }
+
+        [TestMethod]
         public void RejectLetter()
         {
             GenerateRule rule = new GenerateRule(Rule.Get("0-9").OneOrMore(), "Integer");

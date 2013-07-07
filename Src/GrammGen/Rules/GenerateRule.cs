@@ -9,11 +9,18 @@
     {
         private Rule rule;
         private string type;
+        private Func<object, object> func;
 
         public GenerateRule(Rule rule, string type)
+            : this(rule, type, null)
+        {
+        }
+
+        public GenerateRule(Rule rule, string type, Func<object, object> func)
         {
             this.rule = rule;
             this.type = type;
+            this.func = func;
         }
 
         public override string Type
@@ -30,6 +37,9 @@
 
             if (result == null)
                 return null;
+
+            if (func != null)
+                return new Element(this.type, func(result.Value));
 
             return new Element(this.type, result.Value);
         }
