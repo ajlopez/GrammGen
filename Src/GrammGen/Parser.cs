@@ -12,7 +12,9 @@
 
         private TextReader reader;
         private Stack<Element> elements = new Stack<Element>();
-        private IList<Rule> rules;
+        private IDictionary<string, IList<Rule>> rules = new Dictionary<string, IList<Rule>>();
+        private IDictionary<string, IList<Rule>> leftrules = new Dictionary<string, IList<Rule>>();
+        private IList<Rule> skips = new List<Rule>();
 
         public Parser(string text)
             : this(new StringReader(text == null ? string.Empty : text))
@@ -35,7 +37,23 @@
             this.reader = reader;
 
             if (rules != null)
-                this.rules = new List<Rule>(rules);
+                foreach (var rule in rules)
+                    if (rule.Type == Skip)
+                        this.skips.Add(rule);
+                    else if (rule.LeftType == rule.Type)
+                    {
+                        if (!this.leftrules.ContainsKey(rule.Type))
+                            this.leftrules[rule.Type] = new List<Rule>();
+
+                        this.leftrules[rule.Type].Add(rule);
+                    }
+                    else
+                    {
+                        if (!this.rules.ContainsKey(rule.Type))
+                            this.rules[rule.Type] = new List<Rule>();
+
+                        this.rules[rule.Type].Add(rule);
+                    }
         }
 
         public Element Parse(string type)
@@ -50,27 +68,28 @@
             {
             }
 
-            foreach (var rule in this.rules.Where(r => r.Type == type && r.LeftType != type))
-            {
-                var result = rule.Process(this);
-
-                if (result != null)
+            if (this.rules.ContainsKey(type))
+                foreach (var rule in this.rules[type])
                 {
-                    while (this.ProcessSkipRules())
+                    var result = rule.Process(this);
+
+                    if (result != null)
                     {
+                        while (this.ProcessSkipRules())
+                        {
+                        }
+
+                        var newresult = this.ProcessLeftRecursionRules(type, result);
+
+                        while (newresult != null)
+                        {
+                            result = newresult;
+                            newresult = this.ProcessLeftRecursionRules(type, result);
+                        }
+
+                        return result;
                     }
-
-                    var newresult = this.ProcessLeftRecursionRules(type, result);
-
-                    while (newresult != null)
-                    {
-                        result = newresult;
-                        newresult = this.ProcessLeftRecursionRules(type, result);
-                    }
-
-                    return result;
                 }
-            }
 
             return null;
         }
@@ -118,7 +137,7 @@
 
         private bool ProcessSkipRules()
         {
-            foreach (var rule in this.rules.Where(r => r.Type == Skip))
+            foreach (var rule in this.skips)
             {
                 var result = rule.Process(this);
 
@@ -131,9 +150,12 @@
 
         private Element ProcessLeftRecursionRules(string type, Element result)
         {
+            if (!this.leftrules.ContainsKey(type))
+                return null;
+
             this.Push(result);
 
-            foreach (var rule in this.rules.Where(r => r.Type == type && r.LeftType == type))
+            foreach (var rule in this.leftrules[type])
             {
                 var newresult = rule.Process(this);
 

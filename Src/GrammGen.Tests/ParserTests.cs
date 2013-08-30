@@ -137,7 +137,7 @@
         public void ParseAddIntegersUsingLeftRecursion()
         {
             Rule ruleint = Rule.Get("0-9").OneOrMore().Generate("Integer", x => int.Parse((string)x, System.Globalization.CultureInfo.InvariantCulture));
-            Rule ruleexpr = Rule.Get("Expression", '+', "Integer").Generate("Expression");
+            Rule ruleexpr = Rule.Get("Expression", '+', "Expression").Generate("Expression");
             Rule ruleintexpr = Rule.Get("Integer").Generate("Expression");
 
             Assert.AreEqual("Expression", ruleexpr.LeftType);
@@ -157,6 +157,41 @@
             Assert.AreEqual(456, list[2]);
             Assert.AreEqual("+", list[3]);
             Assert.AreEqual(789, list[4]);
+
+            Assert.IsNull(parser.Parse("Expression"));
+        }
+
+        [TestMethod]
+        public void ParseAddMultiplyIntegersUsingLeftRecursion()
+        {
+            Rule ruleint = Rule.Get("0-9").OneOrMore().Generate("Integer", x => int.Parse((string)x, System.Globalization.CultureInfo.InvariantCulture));
+            Rule ruleexpr1 = Rule.Get("Expression", '+', "Expression").Generate("Expression");
+            Rule ruleexpr2 = Rule.Get("Expression", '*', "Expression").Generate("Expression");
+            Rule ruleintexpr = Rule.Get("Integer").Generate("Expression");
+
+            Assert.AreEqual("Expression", ruleexpr1.LeftType);
+            Assert.AreEqual("Expression", ruleexpr2.LeftType);
+
+            Parser parser = new Parser("123+456*789", new Rule[] { ruleint, ruleexpr1, ruleexpr2, ruleintexpr });
+
+            var result = parser.Parse("Expression");
+
+            Assert.IsNotNull(result);
+            Assert.IsInstanceOfType(result.Value, typeof(IList<object>));
+
+            var list = (IList<object>)result.Value;
+
+            Assert.AreEqual(3, list.Count);
+            Assert.AreEqual(123, list[0]);
+            Assert.AreEqual("+", list[1]);
+            Assert.IsInstanceOfType(list[2], typeof(IList<object>));
+
+            var list2 = (IList<object>)list[3];
+
+            Assert.AreEqual(3, list2.Count);
+            Assert.AreEqual(456, list2[0]);
+            Assert.AreEqual("+", list2[1]);
+            Assert.AreEqual(789, list2[2]);
 
             Assert.IsNull(parser.Parse("Expression"));
         }
