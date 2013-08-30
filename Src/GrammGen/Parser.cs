@@ -149,24 +149,15 @@
 
             var rules = this.leftrules[type];
 
-            try
+            foreach (var rule in rules)
             {
-                for (int k = 0; k < rules.Count; k++)
-                {
-                    this.leftrules[type] = rules.Take(k).ToList();
-                    var rule = rules[k];
-                    var newresult = rule.Process(this);
+                var newresult = rule.Process(this);
 
-                    while (newresult != null)
-                    {
-                        this.Push(newresult);
-                        newresult = rule.Process(this);
-                    }
+                while (newresult != null)
+                {
+                    this.Push(newresult);
+                    newresult = rule.Process(this);
                 }
-            }
-            finally
-            {
-                this.leftrules[type] = rules;
             }
 
             return this.elements.Pop();

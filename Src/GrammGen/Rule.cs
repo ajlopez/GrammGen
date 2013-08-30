@@ -41,6 +41,8 @@
                     newrule = Get((char)argument);
                 else if (argument is string)
                     newrule = Get((string)argument);
+                else if (argument is Rule)
+                    newrule = (Rule)argument;
                 else
                     throw new ArgumentException("Invalid rule argument");
 

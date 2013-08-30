@@ -165,14 +165,15 @@
         public void ParseAddMultiplyIntegersUsingLeftRecursion()
         {
             Rule ruleint = Rule.Get("0-9").OneOrMore().Generate("Integer", x => int.Parse((string)x, System.Globalization.CultureInfo.InvariantCulture));
-            Rule ruleexpr1 = Rule.Get("Expression", '+', "Expression").Generate("Expression", MakeBinaryOperatorExpresion);
-            Rule ruleexpr2 = Rule.Get("Expression", '*', "Expression").Generate("Expression", MakeBinaryOperatorExpresion);
-            Rule ruleintexpr = Rule.Get("Integer").Generate("Expression");
+            Rule ruleexpr1 = Rule.Get("Expression", '+', "Term").Generate("Expression", MakeBinaryOperatorExpresion);
+            Rule ruletermexpr1 = Rule.Get("Term").Generate("Expression");
+            Rule ruletermexpr2 = Rule.Get("Term", '*', "Term").Generate("Term", MakeBinaryOperatorExpresion);
+            Rule ruleintexpr = Rule.Get("Integer").Generate("Term");
 
             Assert.AreEqual("Expression", ruleexpr1.LeftType);
-            Assert.AreEqual("Expression", ruleexpr2.LeftType);
+            Assert.AreEqual("Term", ruletermexpr2.LeftType);
 
-            Parser parser = new Parser("123+456*789", new Rule[] { ruleint, ruleexpr1, ruleexpr2, ruleintexpr });
+            Parser parser = new Parser("123+456*789", new Rule[] { ruleint, ruleexpr1, ruletermexpr1, ruletermexpr2, ruleintexpr });
 
             var result = parser.Parse("Expression");
 
@@ -189,6 +190,77 @@
 
             Assert.AreEqual(456, binop2.Left);
             Assert.AreEqual("*", binop2.Operator);
+            Assert.AreEqual(789, binop2.Right);
+
+            Assert.IsNull(parser.Parse("Expression"));
+        }
+
+        [TestMethod]
+        public void ParseMultiplyAddDivideIntegersUsingLeftRecursion()
+        {
+            Rule ruleint = Rule.Get("0-9").OneOrMore().Generate("Integer", x => int.Parse((string)x, System.Globalization.CultureInfo.InvariantCulture));
+            Rule ruleleftexpr = Rule.Get("Expression", Rule.Or('+', '-'), "Term").Generate("Expression", MakeBinaryOperatorExpresion);
+            Rule ruletermexpr = Rule.Get("Term").Generate("Expression"); 
+            Rule rulelefterm = Rule.Get("Term", Rule.Or('*', '/'), "Factor").Generate("Term", MakeBinaryOperatorExpresion);
+            Rule rulefactorterm = Rule.Get("Factor").Generate("Term");
+            Rule ruleintfactor = Rule.Get("Integer").Generate("Factor");
+
+            Parser parser = new Parser("123*456+789/10", new Rule[] { ruleint, ruleleftexpr, ruletermexpr, rulelefterm, rulefactorterm, ruleintfactor });
+
+            var result = parser.Parse("Expression");
+
+            Assert.IsNotNull(result);
+            Assert.IsInstanceOfType(result.Value, typeof(BinaryOperatorExpression));
+
+            var binop1 = (BinaryOperatorExpression)result.Value;
+
+            Assert.AreEqual("+", binop1.Operator);
+            Assert.IsInstanceOfType(binop1.Left, typeof(BinaryOperatorExpression));
+            Assert.IsInstanceOfType(binop1.Right, typeof(BinaryOperatorExpression));
+
+            var binop2 = (BinaryOperatorExpression)binop1.Left;
+
+            Assert.AreEqual(123, binop2.Left);
+            Assert.AreEqual("*", binop2.Operator);
+            Assert.AreEqual(456, binop2.Right);
+
+            var binop3 = (BinaryOperatorExpression)binop1.Right;
+
+            Assert.AreEqual(789, binop3.Left);
+            Assert.AreEqual("/", binop3.Operator);
+            Assert.AreEqual(10, binop3.Right);
+
+            Assert.IsNull(parser.Parse("Expression"));
+        }
+
+        [TestMethod]
+        public void ParseExpressionWithParens()
+        {
+            Rule ruleint = Rule.Get("0-9").OneOrMore().Generate("Integer", x => int.Parse((string)x, System.Globalization.CultureInfo.InvariantCulture));
+            Rule ruleleftexpr = Rule.Get("Expression", Rule.Or('+', '-'), "Term").Generate("Expression", MakeBinaryOperatorExpresion);
+            Rule ruletermexpr = Rule.Get("Term").Generate("Expression");
+            Rule rulelefterm = Rule.Get("Term", Rule.Or('*', '/'), "Factor").Generate("Term", MakeBinaryOperatorExpresion);
+            Rule rulefactorterm = Rule.Get("Factor").Generate("Term");
+            Rule ruleintfactor = Rule.Get("Integer").Generate("Factor");
+            Rule ruleparens = Rule.Get('(', "Expression", ')').Generate("Factor", x => ((IList<object>)x)[1]);
+
+            Parser parser = new Parser("123*(456+789)", new Rule[] { ruleint, ruleleftexpr, ruletermexpr, rulelefterm, rulefactorterm, ruleintfactor, ruleparens });
+
+            var result = parser.Parse("Expression");
+
+            Assert.IsNotNull(result);
+            Assert.IsInstanceOfType(result.Value, typeof(BinaryOperatorExpression));
+
+            var binop1 = (BinaryOperatorExpression)result.Value;
+
+            Assert.AreEqual("*", binop1.Operator);
+            Assert.AreEqual(123, binop1.Left);
+            Assert.IsInstanceOfType(binop1.Right, typeof(BinaryOperatorExpression));
+
+            var binop2 = (BinaryOperatorExpression)binop1.Right;
+
+            Assert.AreEqual(456, binop2.Left);
+            Assert.AreEqual("+", binop2.Operator);
             Assert.AreEqual(789, binop2.Right);
 
             Assert.IsNull(parser.Parse("Expression"));
