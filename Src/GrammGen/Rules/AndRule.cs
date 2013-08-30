@@ -35,7 +35,7 @@
 
             if (right == null)
             {
-                source.Push(left.Value);
+                source.Push(left);
                 return null;
             }
 

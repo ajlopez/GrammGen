@@ -165,8 +165,8 @@
         public void ParseAddMultiplyIntegersUsingLeftRecursion()
         {
             Rule ruleint = Rule.Get("0-9").OneOrMore().Generate("Integer", x => int.Parse((string)x, System.Globalization.CultureInfo.InvariantCulture));
-            Rule ruleexpr1 = Rule.Get("Expression", '+', "Expression").Generate("Expression");
-            Rule ruleexpr2 = Rule.Get("Expression", '*', "Expression").Generate("Expression");
+            Rule ruleexpr1 = Rule.Get("Expression", '+', "Expression").Generate("Expression", MakeBinaryOperatorExpresion);
+            Rule ruleexpr2 = Rule.Get("Expression", '*', "Expression").Generate("Expression", MakeBinaryOperatorExpresion);
             Rule ruleintexpr = Rule.Get("Integer").Generate("Expression");
 
             Assert.AreEqual("Expression", ruleexpr1.LeftType);
@@ -177,23 +177,33 @@
             var result = parser.Parse("Expression");
 
             Assert.IsNotNull(result);
-            Assert.IsInstanceOfType(result.Value, typeof(IList<object>));
+            Assert.IsInstanceOfType(result.Value, typeof(BinaryOperatorExpression));
 
-            var list = (IList<object>)result.Value;
+            var binop1 = (BinaryOperatorExpression)result.Value;
 
-            Assert.AreEqual(3, list.Count);
-            Assert.AreEqual(123, list[0]);
-            Assert.AreEqual("+", list[1]);
-            Assert.IsInstanceOfType(list[2], typeof(IList<object>));
+            Assert.AreEqual("+", binop1.Operator);
+            Assert.AreEqual(123, binop1.Left);
+            Assert.IsInstanceOfType(binop1.Right, typeof(BinaryOperatorExpression));
 
-            var list2 = (IList<object>)list[3];
+            var binop2 = (BinaryOperatorExpression)binop1.Right;
 
-            Assert.AreEqual(3, list2.Count);
-            Assert.AreEqual(456, list2[0]);
-            Assert.AreEqual("+", list2[1]);
-            Assert.AreEqual(789, list2[2]);
+            Assert.AreEqual(456, binop2.Left);
+            Assert.AreEqual("*", binop2.Operator);
+            Assert.AreEqual(789, binop2.Right);
 
             Assert.IsNull(parser.Parse("Expression"));
+        }
+
+        private static object MakeBinaryOperatorExpresion(object obj)
+        {
+            var list = (IList<object>)obj;
+
+            return new BinaryOperatorExpression()
+            {
+                Operator = (string)list[1],
+                Left = list[0],
+                Right = list[2]
+            };
         }
     }
 }

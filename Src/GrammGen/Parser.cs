@@ -45,7 +45,7 @@
                         if (!this.leftrules.ContainsKey(rule.Type))
                             this.leftrules[rule.Type] = new List<Rule>();
 
-                        this.leftrules[rule.Type].Add(rule);
+                        this.leftrules[rule.Type].Insert(0, rule);
                     }
                     else
                     {
@@ -79,15 +79,7 @@
                         {
                         }
 
-                        var newresult = this.ProcessLeftRecursionRules(type, result);
-
-                        while (newresult != null)
-                        {
-                            result = newresult;
-                            newresult = this.ProcessLeftRecursionRules(type, result);
-                        }
-
-                        return result;
+                        return this.ProcessLeftRecursionRules(type, result);
                     }
                 }
 
@@ -151,21 +143,33 @@
         private Element ProcessLeftRecursionRules(string type, Element result)
         {
             if (!this.leftrules.ContainsKey(type))
-                return null;
+                return result;
 
             this.Push(result);
 
-            foreach (var rule in this.leftrules[type])
-            {
-                var newresult = rule.Process(this);
+            var rules = this.leftrules[type];
 
-                if (newresult != null)
-                    return newresult;
+            try
+            {
+                for (int k = 0; k < rules.Count; k++)
+                {
+                    this.leftrules[type] = rules.Take(k).ToList();
+                    var rule = rules[k];
+                    var newresult = rule.Process(this);
+
+                    while (newresult != null)
+                    {
+                        this.Push(newresult);
+                        newresult = rule.Process(this);
+                    }
+                }
+            }
+            finally
+            {
+                this.leftrules[type] = rules;
             }
 
-            this.elements.Pop();
-
-            return null;
+            return this.elements.Pop();
         }
     }
 }
