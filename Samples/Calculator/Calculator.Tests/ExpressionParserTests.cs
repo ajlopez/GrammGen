@@ -99,5 +99,74 @@
 
             Assert.IsNull(parser.ParseExpression());
         }
+
+        [TestMethod]
+        public void ParseSubtractWithSpaces()
+        {
+            ExpressionParser parser = new ExpressionParser("1 - 2");
+
+            IExpression expression = parser.ParseExpression();
+
+            Assert.IsNotNull(expression);
+            Assert.IsInstanceOfType(expression, typeof(BinaryExpression));
+
+            BinaryExpression bexpression = (BinaryExpression)expression;
+
+            Assert.AreEqual("-", bexpression.Operation);
+            Assert.IsNotNull(bexpression.Left);
+            Assert.IsInstanceOfType(bexpression.Left, typeof(ConstantExpression));
+            Assert.AreEqual(1, ((ConstantExpression)bexpression.Left).Value);
+            Assert.IsNotNull(bexpression.Right);
+            Assert.IsInstanceOfType(bexpression.Right, typeof(ConstantExpression));
+            Assert.AreEqual(2, ((ConstantExpression)bexpression.Right).Value);
+
+            Assert.IsNull(parser.ParseExpression());
+        }
+
+        [TestMethod]
+        public void ParseMultiply()
+        {
+            ExpressionParser parser = new ExpressionParser("1*2");
+
+            IExpression expression = parser.ParseExpression();
+
+            Assert.IsNotNull(expression);
+            Assert.IsInstanceOfType(expression, typeof(BinaryExpression));
+
+            BinaryExpression bexpression = (BinaryExpression)expression;
+
+            Assert.AreEqual("*", bexpression.Operation);
+            Assert.IsNotNull(bexpression.Left);
+            Assert.IsInstanceOfType(bexpression.Left, typeof(ConstantExpression));
+            Assert.AreEqual(1, ((ConstantExpression)bexpression.Left).Value);
+            Assert.IsNotNull(bexpression.Right);
+            Assert.IsInstanceOfType(bexpression.Right, typeof(ConstantExpression));
+            Assert.AreEqual(2, ((ConstantExpression)bexpression.Right).Value);
+
+            Assert.IsNull(parser.ParseExpression());
+        }
+
+        [TestMethod]
+        public void ParseDivide()
+        {
+            ExpressionParser parser = new ExpressionParser("1/2");
+
+            IExpression expression = parser.ParseExpression();
+
+            Assert.IsNotNull(expression);
+            Assert.IsInstanceOfType(expression, typeof(BinaryExpression));
+
+            BinaryExpression bexpression = (BinaryExpression)expression;
+
+            Assert.AreEqual("/", bexpression.Operation);
+            Assert.IsNotNull(bexpression.Left);
+            Assert.IsInstanceOfType(bexpression.Left, typeof(ConstantExpression));
+            Assert.AreEqual(1, ((ConstantExpression)bexpression.Left).Value);
+            Assert.IsNotNull(bexpression.Right);
+            Assert.IsInstanceOfType(bexpression.Right, typeof(ConstantExpression));
+            Assert.AreEqual(2, ((ConstantExpression)bexpression.Right).Value);
+
+            Assert.IsNull(parser.ParseExpression());
+        }
     }
 }
