@@ -10,7 +10,8 @@
     {
         private static Rule[] rules = new Rule[] 
         {
-            Rule.Get("0-9").OneOrMore().Generate("Expression", obj => new ConstantExpression(int.Parse((string)obj)))
+            Rule.Get("0-9").OneOrMore().Generate("Expression", obj => new ConstantExpression(int.Parse((string)obj))),
+            Rule.Get(Rule.Get('-'), Rule.Get("0-9").OneOrMore()).Generate("Expression", obj => new ConstantExpression(int.Parse((string)obj)))
         };
 
         private Parser parser;
