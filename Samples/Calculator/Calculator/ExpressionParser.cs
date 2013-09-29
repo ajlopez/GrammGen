@@ -11,9 +11,13 @@
         private static Rule[] rules = new Rule[] 
         {
             Rule.Or(' ', '\t', '\r', '\n').Skip(),
-            Rule.Or('+', '-', '*', '/').Generate("Oper0"),
-            Rule.Get("Expression", "Oper0", "Expression").Generate("Expression", MakeBinaryExpression),
-            Rule.Get("Integer").Generate("Expression"),
+            Rule.Or('+', '-').Generate("Oper0"),
+            Rule.Or('*', '/').Generate("Oper1"),
+            Rule.Get("Term").Generate("Expression"),
+            Rule.Get("Term", "Oper0", "Term").Generate("Term", MakeBinaryExpression),
+            Rule.Get("Factor").Generate("Term"),
+            Rule.Get("Factor", "Oper1", "Factor").Generate("Factor", MakeBinaryExpression),
+            Rule.Get("Integer").Generate("Factor"),
             Rule.Get("0-9").OneOrMore().Generate("Integer", MakeIntegerConstantExpression),
             Rule.Get(Rule.Get('-'), Rule.Get("0-9").OneOrMore()).Generate("Integer", MakeIntegerConstantExpression)
         };
