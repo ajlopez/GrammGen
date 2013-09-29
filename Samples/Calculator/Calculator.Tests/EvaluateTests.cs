@@ -45,6 +45,15 @@
             Assert.AreEqual(4, Evaluate("8 / 2"));
         }
 
+        [TestMethod]
+        public void EvaluateExpressions()
+        {
+            Assert.AreEqual(7, Evaluate("1+2*3"));
+            Assert.AreEqual(9, Evaluate("(1+2)*3"));
+            Assert.AreEqual(10, Evaluate("2*3+4"));
+            Assert.AreEqual(14, Evaluate("2*(3+4)"));
+        }
+
         private static int Evaluate(string text)
         {
             ExpressionParser parser = new ExpressionParser(text);
