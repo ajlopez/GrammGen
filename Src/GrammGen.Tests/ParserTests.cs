@@ -66,6 +66,22 @@
         }
 
         [TestMethod]
+        public void ParseIntegerSkippingSpacesAndTabs()
+        {
+            Rule rule = Rule.Get("0-9").OneOrMore().Generate("Integer");
+            Rule skip = Rule.Or(' ', '\t').Skip();
+            Parser parser = new Parser("  \t123  ", new Rule[] { rule, skip });
+
+            var result = parser.Parse("Integer");
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual("123", result.Value);
+            Assert.AreEqual("Integer", result.Type);
+
+            Assert.IsNull(parser.Parse("Integer"));
+        }
+
+        [TestMethod]
         public void ParseWordWithoutRule()
         {
             Rule rule = Rule.Get("0-9").OneOrMore().Generate("Integer");

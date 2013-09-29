@@ -13,6 +13,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		LocalTestRun.testrunconfig = LocalTestRun.testrunconfig
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrammGen.Tests", "..\..\Src\GrammGen.Tests\GrammGen.Tests.csproj", "{F3BE3080-BF1C-47E6-A044-4DEB9CD939A4}"
+EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = Calculator.vsmdi
@@ -34,6 +36,10 @@ Global
 		{932D2356-B74F-4585-97BB-7D0CAAFB7A5A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{932D2356-B74F-4585-97BB-7D0CAAFB7A5A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{932D2356-B74F-4585-97BB-7D0CAAFB7A5A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F3BE3080-BF1C-47E6-A044-4DEB9CD939A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F3BE3080-BF1C-47E6-A044-4DEB9CD939A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F3BE3080-BF1C-47E6-A044-4DEB9CD939A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F3BE3080-BF1C-47E6-A044-4DEB9CD939A4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
