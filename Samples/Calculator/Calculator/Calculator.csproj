@@ -47,7 +47,7 @@
   <ItemGroup>
     <Compile Include="ConstantExpression.cs" />
     <Compile Include="IExpression.cs" />
-    <Compile Include="Parser.cs" />
+    <Compile Include="ExpressionParser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
