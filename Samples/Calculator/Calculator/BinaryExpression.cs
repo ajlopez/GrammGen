@@ -26,6 +26,18 @@
 
         public int Evaluate()
         {
+            int lvalue = this.left.Evaluate();
+            int rvalue = this.right.Evaluate();
+
+            if (this.operation == "+")
+                return lvalue + rvalue;
+            if (this.operation == "-")
+                return lvalue - rvalue;
+            if (this.operation == "*")
+                return lvalue * rvalue;
+            if (this.operation == "/")
+                return lvalue / rvalue;
+
             throw new NotImplementedException();
         }
     }
