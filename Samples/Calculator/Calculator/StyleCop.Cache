@@ -1,0 +1,42 @@
+<stylecopresultscache>
+  <version>10</version>
+  <sourcecode name="ConstantExpression.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>09/29/2013 16:08:45</timestamp>
+      <milliseconds>384</milliseconds>
+    </settings>
+    <timestamp>09/29/2013 16:08:11</timestamp>
+    <milliseconds>485</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="AssemblyInfo.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>09/29/2013 16:08:45</timestamp>
+      <milliseconds>384</milliseconds>
+    </settings>
+    <timestamp>09/29/2013 16:01:35</timestamp>
+    <milliseconds>262</milliseconds>
+    <violations />
+  </sourcecode>
+  <project key="-779499940">
+    <configuration>DEBUG;TRACE</configuration>
+  </project>
+  <sourcecode name="IExpression.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>09/29/2013 16:08:45</timestamp>
+      <milliseconds>384</milliseconds>
+    </settings>
+    <timestamp>09/29/2013 16:09:36</timestamp>
+    <milliseconds>520</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="Parser.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>09/29/2013 16:08:45</timestamp>
+      <milliseconds>384</milliseconds>
+    </settings>
+    <timestamp>09/29/2013 16:09:22</timestamp>
+    <milliseconds>97</milliseconds>
+    <violations />
+  </sourcecode>
+</stylecopresultscache>
