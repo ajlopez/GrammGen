@@ -14,10 +14,12 @@
             Rule.Or('+', '-').Generate("Oper0"),
             Rule.Or('*', '/').Generate("Oper1"),
             Rule.Get("Term").Generate("Expression"),
-            Rule.Get("Term", "Oper0", "Term").Generate("Term", MakeBinaryExpression),
+            Rule.Get("Term", "Oper0", "Factor").Generate("Term", MakeBinaryExpression),
             Rule.Get("Factor").Generate("Term"),
-            Rule.Get("Factor", "Oper1", "Factor").Generate("Factor", MakeBinaryExpression),
-            Rule.Get("Integer").Generate("Factor"),
+            Rule.Get("Factor", "Oper1", "Value").Generate("Factor", MakeBinaryExpression),
+            Rule.Get("Value").Generate("Factor"),
+            Rule.Get('(', "Expression", ')').Generate("Value", obj => ((IList<object>)obj)[1]),
+            Rule.Get("Integer").Generate("Value"),
             Rule.Get("0-9").OneOrMore().Generate("Integer", MakeIntegerConstantExpression),
             Rule.Get(Rule.Get('-'), Rule.Get("0-9").OneOrMore()).Generate("Integer", MakeIntegerConstantExpression)
         };

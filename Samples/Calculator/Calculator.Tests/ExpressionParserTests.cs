@@ -169,6 +169,28 @@
         }
 
         [TestMethod]
+        public void ParseAddInParensAndMultiply()
+        {
+            ExpressionParser parser = new ExpressionParser("(1+2)*3");
+
+            IExpression expression = parser.ParseExpression();
+
+            Assert.IsNotNull(expression);
+            Assert.IsInstanceOfType(expression, typeof(BinaryExpression));
+
+            BinaryExpression bexpression = (BinaryExpression)expression;
+
+            Assert.AreEqual("*", bexpression.Operation);
+            Assert.IsNotNull(bexpression.Left);
+            Assert.IsInstanceOfType(bexpression.Left, typeof(BinaryExpression));
+            Assert.IsNotNull(bexpression.Right);
+            Assert.IsInstanceOfType(bexpression.Right, typeof(ConstantExpression));
+            Assert.AreEqual(3, ((ConstantExpression)bexpression.Right).Value);
+
+            Assert.IsNull(parser.ParseExpression());
+        }
+
+        [TestMethod]
         public void ParseMultiplyAdd()
         {
             ExpressionParser parser = new ExpressionParser("1*2+3");
