@@ -11,8 +11,9 @@
         private static Rule[] rules = new Rule[] 
         {
             Rule.Or(' ', '\t', '\r', '\n').Skip(),
-            Rule.Get("0-9").OneOrMore().Generate("Expression", obj => new ConstantExpression(int.Parse((string)obj))),
-            Rule.Get(Rule.Get('-'), Rule.Get("0-9").OneOrMore()).Generate("Expression", obj => new ConstantExpression(int.Parse((string)obj)))
+            Rule.Get("Integer").Generate("Expression"),
+            Rule.Get("0-9").OneOrMore().Generate("Integer", obj => new ConstantExpression(int.Parse((string)obj))),
+            Rule.Get(Rule.Get('-'), Rule.Get("0-9").OneOrMore()).Generate("Integer", obj => new ConstantExpression(int.Parse((string)obj)))
         };
 
         private Parser parser;
