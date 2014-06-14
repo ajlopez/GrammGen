@@ -1,17 +1,17 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 10.00
-# Visual Studio 2008
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Calculator", "Calculator\Calculator.csproj", "{793B7B73-08A8-4D31-AA2C-D0981B5D6E70}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrammGen", "..\..\Src\GrammGen\GrammGen.csproj", "{A8CAAD0C-FD08-4DD7-A164-C28D4EEDFF54}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Calculator.Tests", "Calculator.Tests\Calculator.Tests.csproj", "{932D2356-B74F-4585-97BB-7D0CAAFB7A5A}"
-EndProject
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{72503D76-3999-4D6C-8150-E6CA9C393ED9}"
 	ProjectSection(SolutionItems) = preProject
 		Calculator.vsmdi = Calculator.vsmdi
 		LocalTestRun.testrunconfig = LocalTestRun.testrunconfig
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Calculator", "Calculator\Calculator.csproj", "{793B7B73-08A8-4D31-AA2C-D0981B5D6E70}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrammGen", "..\..\Src\GrammGen\GrammGen.csproj", "{A8CAAD0C-FD08-4DD7-A164-C28D4EEDFF54}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Calculator.Tests", "Calculator.Tests\Calculator.Tests.csproj", "{932D2356-B74F-4585-97BB-7D0CAAFB7A5A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Calculator.Console", "Calculator.Console\Calculator.Console.csproj", "{03456B0E-759B-44E8-B874-D5F56542B07C}"
 EndProject

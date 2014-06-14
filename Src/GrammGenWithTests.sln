@@ -1,15 +1,15 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 10.00
-# Visual Studio 2008
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrammGen", "GrammGen\GrammGen.csproj", "{A8CAAD0C-FD08-4DD7-A164-C28D4EEDFF54}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrammGen.Tests", "GrammGen.Tests\GrammGen.Tests.csproj", "{F3BE3080-BF1C-47E6-A044-4DEB9CD939A4}"
-EndProject
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{D86865F0-F6E8-4D01-8598-45F8068F54D3}"
 	ProjectSection(SolutionItems) = preProject
 		GrammGen.vsmdi = GrammGen.vsmdi
 		LocalTestRun.testrunconfig = LocalTestRun.testrunconfig
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrammGen", "GrammGen\GrammGen.csproj", "{A8CAAD0C-FD08-4DD7-A164-C28D4EEDFF54}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrammGen.Tests", "GrammGen.Tests\GrammGen.Tests.csproj", "{F3BE3080-BF1C-47E6-A044-4DEB9CD939A4}"
 EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
